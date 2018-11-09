@@ -1,8 +1,6 @@
 package com.tistory.jeongs0222.weatherapplication.ui.viewmodel
 
-import androidx.annotation.MainThread
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.tistory.jeongs0222.weatherapplication.utils.SingleLiveEvent
 import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -11,7 +9,7 @@ import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
 
-class SplashViewModel : DisposableViewModel() {
+class SplashViewModel: DisposableViewModel() {
 
     private val _openDelay = SingleLiveEvent<Boolean>()
 

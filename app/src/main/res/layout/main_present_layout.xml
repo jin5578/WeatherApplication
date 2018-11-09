@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+                name="viewModel"
+                type="com.tistory.jeongs0222.weatherapplication.ui.viewmodel.MainViewModel"/>
+
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="50dp">
+
+        <TextView
+                android:id="@+id/present_location_textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="30dp"
+                android:gravity="center"
+                android:text="@{viewModel.location_textView}"
+                android:textColor="@color/colorBlack"
+                android:textSize="20dp"
+                android:fontFamily="@font/goyang"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="영등포구 당산동 6가"/>
+
+        <ImageView
+                android:id="@+id/present_emoticon_imageView"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:src="@drawable/happy"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/present_location_textView"/>
+
+        <TextView
+                android:id="@+id/present_status_textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="20dp"
+                android:text="@{viewModel.status_textView}"
+                android:textColor="@color/colorBlack"
+                android:textSize="18dp"
+                android:fontFamily="@font/goyang"
+                app:layout_constraintTop_toBottomOf="@id/present_emoticon_imageView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="매우 좋음"/>
+
+        <TextView
+                android:id="@+id/present_explanation_textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:paddingBottom="20dp"
+                android:text="@{viewModel.explation_textView}"
+                android:textSize="18dp"
+                android:textColor="@color/colorBlack"
+                android:fontFamily="@font/goyang"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/present_status_textView"
+                tools:text="화창합니다! 외출을 나가세요!"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
