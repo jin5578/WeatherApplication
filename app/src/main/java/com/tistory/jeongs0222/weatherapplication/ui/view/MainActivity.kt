@@ -1,7 +1,6 @@
 package com.tistory.jeongs0222.weatherapplication.ui.view
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -21,7 +20,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override val layoutResourceId: Int = R.layout.activity_main
 
-    private val PERMISSION = 111;
+    private val PERMISSION = 111
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,12 +67,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             .apply {
                 setTitle("알림")
                 setMessage("저장소 권한이 거부되었습니다. 사용을 원하시면 설정에서 해당 권한을 직접 허용하셔야 합니다.")
-                setNeutralButton("설정", DialogInterface.OnClickListener { dialogInterface, which ->
+                setNeutralButton("설정") { dialogInterface, which ->
                     val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                    intent.setData(Uri.parse("package:" + packageName))
+                    intent.data = Uri.parse("package:$packageName")
 
                     startActivity(intent)
-                })
+                }
                 setCancelable(false)
             }
             .create()
