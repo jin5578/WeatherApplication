@@ -15,7 +15,7 @@ interface PermissionProvider {
     fun requestPermission()
 }
 
-class PermissionProviderImpl(private val activity: Activity) : PermissionProvider {
+class PermissionProviderImpl(private val activity: Activity): PermissionProvider {
 
     private val checkList = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION)
 

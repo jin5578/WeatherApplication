@@ -3,11 +3,13 @@ package com.tistory.jeongs0222.weatherapplication.ui.viewmodel
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.tistory.jeongs0222.weatherapplication.utils.LocationProvider
 import com.tistory.jeongs0222.weatherapplication.utils.PermissionProvider
 import com.tistory.jeongs0222.weatherapplication.utils.SingleLiveEvent
 
 
-class MainViewModel(private val permissionProvider: PermissionProvider) : DisposableViewModel() {
+class MainViewModel(private val permissionProvider: PermissionProvider, private val locationProvider: LocationProvider) : DisposableViewModel() {
+
 
     private val _present_location_textView = MutableLiveData<String>()
     val location_textView: LiveData<String>
@@ -33,6 +35,8 @@ class MainViewModel(private val permissionProvider: PermissionProvider) : Dispos
     val showDialog: LiveData<Any>
         get() = _showDialog
 
+    //private var compositeDisposable = CompositeDisposable()
+
     init {
         checkPermission()
     }
@@ -44,6 +48,8 @@ class MainViewModel(private val permissionProvider: PermissionProvider) : Dispos
             }
         } else {
             //좌표위치 받아오는 부분
+            //compositeDisposable.add(locationProvider.getCurrentLocation())
+            Log.e("gugugu", locationProvider.getCurrentLocation())
             Log.e("좌표 위치", "좌표 위치")
         }
     }

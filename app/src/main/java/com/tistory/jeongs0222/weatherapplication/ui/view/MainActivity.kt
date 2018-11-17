@@ -7,16 +7,21 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.tistory.jeongs0222.weatherapplication.R
 import com.tistory.jeongs0222.weatherapplication.databinding.ActivityMainBinding
 import com.tistory.jeongs0222.weatherapplication.ui.viewmodel.MainViewModel
+import com.tistory.jeongs0222.weatherapplication.utils.LocationProvider
+import com.tistory.jeongs0222.weatherapplication.utils.LocationProviderImpl
 import com.tistory.jeongs0222.weatherapplication.utils.PermissionProvider
 import com.tistory.jeongs0222.weatherapplication.utils.PermissionProviderImpl
+import org.koin.android.ext.android.inject
 
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     private val permissionProvider = PermissionProviderImpl(this) as PermissionProvider
+    private val locationProvider = LocationProviderImpl(this) as LocationProvider
 
     override val layoutResourceId: Int = R.layout.activity_main
 
@@ -26,7 +31,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val mainViewModel = MainViewModel(permissionProvider)
+        val mainViewModel = MainViewModel(permissionProvider, locationProvider)
 
         mainViewModel.bind()
 
@@ -45,11 +50,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
-        if(requestCode == PERMISSION) {
+        if (requestCode == PERMISSION) {
 
-            if(grantResults.isNotEmpty()) {
+            if (grantResults.isNotEmpty()) {
 
-                for(i in 0 .. grantResults.size - 1) {
+                for (i in 0..grantResults.size - 1) {
 
                     if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
                         return
