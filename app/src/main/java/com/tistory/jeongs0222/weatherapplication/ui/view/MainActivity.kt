@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.tistory.jeongs0222.weatherapplication.R
 import com.tistory.jeongs0222.weatherapplication.databinding.ActivityMainBinding
 import com.tistory.jeongs0222.weatherapplication.ui.viewmodel.MainViewModel
+import com.tistory.jeongs0222.weatherapplication.ui.viewmodel.MainViewModelFactory
 import com.tistory.jeongs0222.weatherapplication.utils.LocationProvider
 import com.tistory.jeongs0222.weatherapplication.utils.LocationProviderImpl
 import com.tistory.jeongs0222.weatherapplication.utils.PermissionProvider
@@ -27,16 +28,18 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     private val PERMISSION = 111
 
+    private val mainViewModelFactory: MainViewModelFactory by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val mainViewModel = MainViewModel(permissionProvider, locationProvider)
+        //val mainViewModel = MainViewModel(permissionProvider, locationProvider)
 
-        mainViewModel.bind()
+        val mainViewModel = ViewModelProviders.of(this, mainViewModelFactory).get(MainViewModel::class.java)
+        //mainViewModel.bind()
 
         mainViewModel.location_imageView.observe(this, Observer {
-           mainViewModel.checkPermissionImage()
+           //mainViewModel.checkPermissionImage()
         })
 
         mainViewModel.showDialog.observe(this, Observer {

@@ -3,13 +3,16 @@ package com.tistory.jeongs0222.weatherapplication.ui.viewmodel
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.tistory.jeongs0222.weatherapplication.model.Repository
 import com.tistory.jeongs0222.weatherapplication.utils.LocationProvider
 import com.tistory.jeongs0222.weatherapplication.utils.PermissionProvider
 import com.tistory.jeongs0222.weatherapplication.utils.SingleLiveEvent
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 
-class MainViewModel(private val permissionProvider: PermissionProvider, private val locationProvider: LocationProvider) : DisposableViewModel() {
-
+//class MainViewModel(private val permissionProvider: PermissionProvider, private val locationProvider: LocationProvider) : DisposableViewModel() {
+class MainViewModel(private val repository: Repository): DisposableViewModel() {
 
     private val _present_location_textView = MutableLiveData<String>()
     val location_textView: LiveData<String>
@@ -38,10 +41,12 @@ class MainViewModel(private val permissionProvider: PermissionProvider, private 
     //private var compositeDisposable = CompositeDisposable()
 
     init {
-        checkPermission()
+        //checkPermission()
+
+        geoCoder()
     }
 
-    private fun checkPermission() {
+    /*private fun checkPermission() {
         if (permissionProvider.getLocationPermission()) {
             if (!permissionProvider.shouldShow()) {
                 permissionProvider.requestPermission()
@@ -52,7 +57,7 @@ class MainViewModel(private val permissionProvider: PermissionProvider, private 
             Log.e("gugugu", locationProvider.getCurrentLocation())
             Log.e("좌표 위치", "좌표 위치")
         }
-    }
+    }*/
 
     fun bind() {
         _present_location_textView.value = "영등포구 당산동 6가"
@@ -64,10 +69,21 @@ class MainViewModel(private val permissionProvider: PermissionProvider, private 
         _main_location_imageView.call()
     }
 
-    fun checkPermissionImage() {
+    /*fun checkPermissionImage() {
         if (permissionProvider.getLocationPermission()) {
             _showDialog.call()
         }
+    }*/
+
+    fun geoCoder() {
+        addDisposable(repository.getGeocoder("coordsToaddr", 1.0.toFloat(), "126.814012,37.484822", "epsg:4326", "json", "roadaddr")
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                Log.e("test", it.area0.name+it.area1.name+it.area2.name+it.area3.name)
+            }, {
+                it.printStackTrace()
+            }))
     }
 
 }
