@@ -12,7 +12,7 @@ import io.reactivex.schedulers.Schedulers
 
 
 //class MainViewModel(private val permissionProvider: PermissionProvider, private val locationProvider: LocationProvider) : DisposableViewModel() {
-class MainViewModel(private val repository: Repository): DisposableViewModel() {
+class MainViewModel(private val repository: Repository) : DisposableViewModel() {
 
     private val _present_location_textView = MutableLiveData<String>()
     val location_textView: LiveData<String>
@@ -76,14 +76,22 @@ class MainViewModel(private val repository: Repository): DisposableViewModel() {
     }*/
 
     fun geoCoder() {
-        addDisposable(repository.getGeocoder("coordsToaddr", 1.0.toFloat(), "126.814012,37.484822", "epsg:4326", "json", "roadaddr")
+        addDisposable(repository.getGeocoder(
+            "coordsToaddr",
+            1.0.toFloat(),
+            "126.814012,37.484822",
+            "epsg:4326",
+            "json",
+            "roadaddr"
+        )
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                Log.e("test", it.area0.name+it.area1.name+it.area2.name+it.area3.name)
+                Log.e("test", it.address)
             }, {
                 it.printStackTrace()
-            }))
+            })
+        )
     }
 
 }
