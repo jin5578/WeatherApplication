@@ -21,8 +21,8 @@ import org.koin.android.ext.android.inject
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
-    private val permissionProvider = PermissionProviderImpl(this) as PermissionProvider
-    private val locationProvider = LocationProviderImpl(this) as LocationProvider
+    //private val permissionProvider = PermissionProviderImpl(this) as PermissionProvider
+    //private val locationProvider = LocationProviderImpl(this) as LocationProvider
 
     override val layoutResourceId: Int = R.layout.activity_main
 

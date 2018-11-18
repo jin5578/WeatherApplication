@@ -5,6 +5,7 @@ import io.reactivex.Single
 
 
 class NetworkRepositoryImpl(private val api: Api) : Repository {
+
     override fun getGeocoder(
         request: String,
         version: Float,

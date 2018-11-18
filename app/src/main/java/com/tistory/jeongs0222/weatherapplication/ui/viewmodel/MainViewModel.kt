@@ -1,12 +1,9 @@
 package com.tistory.jeongs0222.weatherapplication.ui.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tistory.jeongs0222.weatherapplication.model.Repository
-import com.tistory.jeongs0222.weatherapplication.utils.LocationProvider
-import com.tistory.jeongs0222.weatherapplication.utils.PermissionProvider
-import com.tistory.jeongs0222.weatherapplication.utils.SingleLiveEvent
+import com.tistory.jeongs0222.weatherapplication.utils.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -17,6 +14,10 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
     private val _present_location_textView = MutableLiveData<String>()
     val location_textView: LiveData<String>
         get() = _present_location_textView
+
+    private val _present_time_textView = MutableLiveData<String>()
+    val time_textView: LiveData<String>
+        get() = _present_time_textView
 
     private val _present_emoticon_imageView = MutableLiveData<String>()
     val emoticon_imageView: LiveData<String>
@@ -42,8 +43,9 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
 
     init {
         //checkPermission()
-
         geoCoder()
+
+        getPresentDate()
     }
 
     /*private fun checkPermission() {
@@ -76,22 +78,29 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
     }*/
 
     fun geoCoder() {
-        addDisposable(repository.getGeocoder(
-            "coordsToaddr",
-            1.0.toFloat(),
-            "126.814012,37.484822",
-            "epsg:4326",
-            "json",
-            "roadaddr"
+        addDisposable(
+            repository.getGeocoder(
+                "coordsToaddr",
+                1.0.toFloat(),
+                "126.814012,37.484822",
+                "epsg:4326",
+                "json",
+                "roadaddr"
+            )
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    _present_location_textView.value = it.address
+                }, {
+                    it.printStackTrace()
+                })
         )
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                Log.e("test", it.address)
-            }, {
-                it.printStackTrace()
-            })
-        )
+    }
+
+    fun getPresentDate() {
+        val dateProvider = DateProviderImpl() as DateProvider
+
+        _present_time_textView.value = dateProvider.getDate()
     }
 
 }

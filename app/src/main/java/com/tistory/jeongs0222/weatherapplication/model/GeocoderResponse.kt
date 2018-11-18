@@ -7,11 +7,6 @@ data class GeocoderResponse(val results: List<GeocoderResult>)
 
 data class GeocoderResult(@SerializedName("region") val region: GeocoderRegion)
 
+data class GeocoderRegion(val area0: GeocoderArea, val area1: GeocoderArea, val area2: GeocoderArea, val area3: GeocoderArea)
 
-data class GeocoderRegion(
-    val area0: GeocoderArea,
-    val area1: GeocoderArea,
-    val area2: GeocoderArea,
-    val area3: GeocoderArea
-)
-
+data class GeocoderArea(val name: String)

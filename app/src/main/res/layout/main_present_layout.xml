@@ -24,7 +24,7 @@
                 android:id="@+id/present_location_textView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:padding="30dp"
+                android:paddingTop="30dp"
                 android:gravity="center"
                 android:text="@{viewModel.location_textView}"
                 android:textColor="@color/colorBlack"
@@ -35,21 +35,37 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="영등포구 당산동 6가"/>
 
+        <TextView
+                android:id="@+id/present_time_textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@{viewModel.time_textView}"
+                android:textColor="@color/colorBlack"
+                android:textSize="15dp"
+                android:fontFamily="@font/goyang"
+                android:paddingTop="10dp"
+                android:paddingBottom="30dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/present_location_textView"
+                tools:text="18.11.18 23:10"/>
+
         <ImageView
                 android:id="@+id/present_emoticon_imageView"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
-                android:src="@drawable/happy"
+                android:src="@drawable/sun"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/present_location_textView"/>
+                app:layout_constraintTop_toBottomOf="@id/present_time_textView"/>
 
         <TextView
                 android:id="@+id/present_status_textView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:paddingTop="20dp"
+                android:paddingTop="30dp"
                 android:text="@{viewModel.status_textView}"
                 android:textColor="@color/colorBlack"
                 android:textSize="18dp"
@@ -65,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:paddingTop="10dp"
-                android:paddingBottom="20dp"
+                android:paddingBottom="30dp"
                 android:text="@{viewModel.explation_textView}"
                 android:textSize="18dp"
                 android:textColor="@color/colorBlack"
