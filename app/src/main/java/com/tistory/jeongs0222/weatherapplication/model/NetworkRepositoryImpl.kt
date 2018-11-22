@@ -1,6 +1,7 @@
 package com.tistory.jeongs0222.weatherapplication.model
 
 import com.tistory.jeongs0222.weatherapplication.api.Api
+import com.tistory.jeongs0222.weatherapplication.model.geocoder.GeocoderAddress
 import io.reactivex.Single
 
 
@@ -13,13 +14,13 @@ class NetworkRepositoryImpl(private val api: Api) : Repository {
         sourcecrs: String,
         output: String,
         orders: String
-    ): Single<Address> {
+    ): Single<GeocoderAddress> {
         return api.geocoder(request, coords, sourcecrs, output, orders)
             .map {
                 val region = it.results[0].region
                 val address = "${region.area1.name} ${region.area2.name} ${region.area3.name}"
 
-                Address(address)
+                GeocoderAddress(address)
             }
     }
 

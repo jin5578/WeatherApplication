@@ -34,9 +34,35 @@
         <include
                 android:id="@+id/main_present_layout"
                 layout="@layout/main_present_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 app:viewModel="@{mainViewModel}"
-                app:layout_constraintTop_toBottomOf="@+id/main_location_imageView"/>
+                app:layout_constraintTop_toBottomOf="@+id/main_location_imageView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
+        <TextView
+                android:id="@+id/null1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="현재"
+                android:textColor="@color/colorBlack"
+                android:textSize="18sp"
+                android:fontFamily="@font/goyang"
+                android:padding="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/main_present_layout"/>
+
+        <include
+                android:id="@+id/main_recycler_layout"
+                layout="@layout/main_finedust_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:viewModel="@{mainViewModel}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/null1"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
