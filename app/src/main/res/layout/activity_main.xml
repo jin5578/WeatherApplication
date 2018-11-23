@@ -54,7 +54,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/main_present_layout"/>
 
-        <include
+        <!--<include
                 android:id="@+id/main_recycler_layout"
                 layout="@layout/main_finedust_layout"
                 android:layout_width="match_parent"
@@ -62,7 +62,19 @@
                 app:viewModel="@{mainViewModel}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/null1"/>
+                app:layout_constraintTop_toBottomOf="@id/null1"/>-->
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/finedust_recyclerView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:adapter="@{mainViewModel.finedustAdapter}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/null1">
+
+        </androidx.recyclerview.widget.RecyclerView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

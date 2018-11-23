@@ -1,7 +1,9 @@
 package com.tistory.jeongs0222.weatherapplication.ui.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.tistory.jeongs0222.weatherapplication.adapter.FinedustAdapter
 import com.tistory.jeongs0222.weatherapplication.model.Repository
 import com.tistory.jeongs0222.weatherapplication.utils.*
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -41,11 +43,15 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
 
     //private var compositeDisposable = CompositeDisposable()
 
+    val finedustAdapter = FinedustAdapter()
+
     init {
         //checkPermission()
         geoCoder()
 
         getPresentDate()
+
+        getFinedust()
     }
 
     /*private fun checkPermission() {
@@ -85,8 +91,7 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
                 "126.814012,37.484822",
                 "epsg:4326",
                 "json",
-                "roadaddr"
-            )
+                "roadaddr")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
@@ -101,6 +106,27 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
         val dateProvider = DateProviderImpl() as DateProvider
 
         _present_time_textView.value = dateProvider.getDate()
+    }
+
+    //더미 값 넣어둠
+    fun getFinedust() {
+        Log.e("start", "start")
+        addDisposable(repository.getFinedust(
+            "644c7563526a696e36336d50516942",
+            "json",
+            "ListAirQualityByDistrictService",
+            1,
+            5,
+            "111142")
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                finedustAdapter.addItems(it)
+            }, {
+                Log.e("fail", "fail")
+                it.printStackTrace()
+            }))
+
     }
 
 }

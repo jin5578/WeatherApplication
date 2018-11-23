@@ -16,60 +16,385 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp">
+            android:layout_height="wrap_content">
 
-        <TextView
-                android:id="@+id/finedust_sort_textView"
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/pm10_constraintLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{mainFinedustViewModel.sort_textView}"
-                android:textColor="@color/colorBlack"
-                android:textSize="12sp"
-                android:fontFamily="@font/goyang"
+                android:padding="20dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="미세먼지"/>
+                app:layout_constraintBottom_toBottomOf="parent">
 
-        <ImageView
-                android:id="@+id/finedust_imageView"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/finedust_sort_textView"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:src="@drawable/sun"/>
+            <TextView
+                    android:id="@+id/null1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="미세먼지"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/goyang"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
 
-        <TextView
-                android:id="@+id/finedust_status_textView"
+            <ImageView
+                    android:id="@+id/pm10_imageView"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/sun"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/null1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:src="@drawable/sun"/>
+
+            <TextView
+                    android:id="@+id/pm10_status_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@{mainFinedustViewModel.pm10_status_textView}"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/goyang"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/pm10_imageView"
+                    tools:text="좋음"/>
+
+            <TextView
+                    android:id="@+id/pm10_concentration_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@{mainFinedustViewModel.pm10_concentration_textView}"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/goyang"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/pm10_status_textView"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    tools:text="25 ㎍/㎥"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/pm25_constraintLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@{mainFinedustViewModel.status_textView}"
-                android:textColor="@color/colorBlack"
-                android:textSize="12sp"
-                android:fontFamily="@font/goyang"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/finedust_imageView"
-                tools:text="좋음"/>
+                android:padding="20dp"
+                app:layout_constraintStart_toEndOf="@id/pm10_constraintLayout"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
 
-        <TextView
-                android:id="@+id/finedust_concentration_textView"
+            <TextView
+                    android:id="@+id/null2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="초미세먼지"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/goyang"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+            <ImageView
+                    android:id="@+id/pm25_imageView"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/sun"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/null2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:src="@drawable/sun"/>
+
+            <TextView
+                    android:id="@+id/pm25_status_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@{mainFinedustViewModel.pm25_status_textView}"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/goyang"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/pm25_imageView"
+                    tools:text="좋음"/>
+
+            <TextView
+                    android:id="@+id/pm25_concentration_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@{mainFinedustViewModel.pm25_concentration_textView}"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/goyang"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/pm25_status_textView"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    tools:text="25 ㎍/㎥"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/nitrogen_constraintLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@{mainFinedustViewModel.concentration_textView}"
-                android:textColor="@color/colorBlack"
-                android:textSize="12sp"
-                android:fontFamily="@font/goyang"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/finedust_status_textView"
-                app:layout_constraintBottom_toBottomOf="parent"
-                tools:text="25 ㎍/㎥"/>
+                android:padding="20dp"
+                app:layout_constraintStart_toEndOf="@id/pm25_constraintLayout"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                    android:id="@+id/null3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="이산화질소"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/goyang"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+            <ImageView
+                    android:id="@+id/nitrogen_imageView"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/sun"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/null3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:src="@drawable/sun"/>
+
+            <TextView
+                    android:id="@+id/nitrogen_status_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@{mainFinedustViewModel.nitrogen_status_textView}"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/goyang"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/nitrogen_imageView"
+                    tools:text="좋음"/>
+
+            <TextView
+                    android:id="@+id/nitrogen_concentration_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@{mainFinedustViewModel.nitrogen_concentration_textView}"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/goyang"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/nitrogen_status_textView"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    tools:text="25 ㎍/㎥"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ozon_constraintLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                app:layout_constraintStart_toEndOf="@id/nitrogen_constraintLayout"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                    android:id="@+id/null4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="이산화질소"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/goyang"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+            <ImageView
+                    android:id="@+id/ozone_imageView"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/sun"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/null4"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:src="@drawable/sun"/>
+
+            <TextView
+                    android:id="@+id/ozone_status_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@{mainFinedustViewModel.ozone_status_textView}"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/goyang"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ozone_imageView"
+                    tools:text="좋음"/>
+
+            <TextView
+                    android:id="@+id/ozone_concentration_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@{mainFinedustViewModel.ozone_concentration_textView}"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/goyang"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ozone_status_textView"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    tools:text="25 ㎍/㎥"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/carbon_constraintLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                app:layout_constraintStart_toEndOf="@id/ozon_constraintLayout"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                    android:id="@+id/null5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="일산화탄소"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/goyang"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+            <ImageView
+                    android:id="@+id/carbon_imageView"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/sun"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/null5"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:src="@drawable/sun"/>
+
+            <TextView
+                    android:id="@+id/carbon_status_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@{mainFinedustViewModel.carbon_status_textView}"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/goyang"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/carbon_imageView"
+                    tools:text="좋음"/>
+
+            <TextView
+                    android:id="@+id/carbon_concentration_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@{mainFinedustViewModel.carbon_concentration_textView}"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/goyang"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/carbon_status_textView"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    tools:text="25 ㎍/㎥"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/sulfurous_constraintLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                app:layout_constraintStart_toEndOf="@id/carbon_constraintLayout"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                    android:id="@+id/null6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="일산화탄소"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/goyang"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+            <ImageView
+                    android:id="@+id/sulfurous_imageView"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/sun"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/null6"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:src="@drawable/sun"/>
+
+            <TextView
+                    android:id="@+id/sulfurous_status_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@{mainFinedustViewModel.sulfurous_status_textView}"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/goyang"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/sulfurous_imageView"
+                    tools:text="좋음"/>
+
+            <TextView
+                    android:id="@+id/sulfurous_concentration_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@{mainFinedustViewModel.sulfurous_concentration_textView}"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/goyang"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/sulfurous_status_textView"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    tools:text="25 ㎍/㎥"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,5 +1,6 @@
 package com.tistory.jeongs0222.weatherapplication.di
 
+import com.tistory.jeongs0222.weatherapplication.api.FinedustApi
 import com.tistory.jeongs0222.weatherapplication.model.NetworkRepositoryImpl
 import com.tistory.jeongs0222.weatherapplication.model.Repository
 import com.tistory.jeongs0222.weatherapplication.ui.viewmodel.MainViewModelFactory
@@ -13,7 +14,8 @@ import org.koin.dsl.module.module
 val geocoderModules: Module = module {
 
     factory {
-        NetworkRepositoryImpl(get()) as Repository
+        //NetworkRepositoryImpl(get(), get()) as Repository
+        NetworkRepositoryImpl(get(), get())
     }
 
     factory {

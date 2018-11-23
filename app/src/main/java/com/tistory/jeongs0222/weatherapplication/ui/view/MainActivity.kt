@@ -6,8 +6,10 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
+import android.widget.HorizontalScrollView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.tistory.jeongs0222.weatherapplication.R
 import com.tistory.jeongs0222.weatherapplication.databinding.ActivityMainBinding
 import com.tistory.jeongs0222.weatherapplication.ui.viewmodel.MainViewModel
@@ -30,8 +32,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     private val mainViewModelFactory: MainViewModelFactory by inject()
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        viewDataBinding.finedustRecyclerView.layoutManager = LinearLayoutManager(this)
 
         //val mainViewModel = MainViewModel(permissionProvider, locationProvider)
 
@@ -45,6 +50,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         mainViewModel.showDialog.observe(this, Observer {
             alertDialog()
         })
+
 
         viewDataBinding.mainViewModel = mainViewModel
         viewDataBinding.setLifecycleOwner(this)
