@@ -36,7 +36,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewDataBinding.finedustRecyclerView.layoutManager = LinearLayoutManager(this)
+        viewDataBinding.finedustRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
         //val mainViewModel = MainViewModel(permissionProvider, locationProvider)
 

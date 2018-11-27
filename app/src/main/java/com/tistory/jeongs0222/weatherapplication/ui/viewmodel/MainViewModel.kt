@@ -91,7 +91,8 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
                 "126.814012,37.484822",
                 "epsg:4326",
                 "json",
-                "roadaddr")
+                "roadaddr"
+            )
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
@@ -117,15 +118,18 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
             "ListAirQualityByDistrictService",
             1,
             5,
-            "111142")
+            "111142"
+        )
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
+                Log.e("PM10", it.PM10)
                 finedustAdapter.addItems(it)
             }, {
                 Log.e("fail", "fail")
                 it.printStackTrace()
-            }))
+            })
+        )
 
     }
 

@@ -55,6 +55,9 @@ val apiModules: Module = module {
 
     single {
         Retrofit.Builder()
+            .client(OkHttpClient.Builder()
+                .addInterceptor(get(loggingInterceptor))
+                .build())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(finedustBaseUrl)

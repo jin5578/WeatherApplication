@@ -3,7 +3,6 @@ package com.tistory.jeongs0222.weatherapplication.model
 import com.tistory.jeongs0222.weatherapplication.api.FinedustApi
 import com.tistory.jeongs0222.weatherapplication.api.GeocoderApi
 import com.tistory.jeongs0222.weatherapplication.model.finedust.FinedustResult
-import com.tistory.jeongs0222.weatherapplication.model.finedust.FinedustRow
 import com.tistory.jeongs0222.weatherapplication.model.geocoder.GeocoderAddress
 import io.reactivex.Single
 

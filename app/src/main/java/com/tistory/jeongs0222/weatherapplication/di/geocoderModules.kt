@@ -14,15 +14,14 @@ import org.koin.dsl.module.module
 val geocoderModules: Module = module {
 
     factory {
-        //NetworkRepositoryImpl(get(), get()) as Repository
-        NetworkRepositoryImpl(get(), get())
+        NetworkRepositoryImpl(get(), get()) as Repository
     }
 
     factory {
         MainViewModelFactory(get())
     }
 
-    factory {
+    /*factory {
         //PermissionProviderImpl(androidContext()) as PermissionProvider
-    }
+    }*/
 }

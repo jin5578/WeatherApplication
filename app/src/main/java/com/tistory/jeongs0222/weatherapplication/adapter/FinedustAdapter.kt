@@ -1,5 +1,6 @@
 package com.tistory.jeongs0222.weatherapplication.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -10,36 +11,42 @@ import com.tistory.jeongs0222.weatherapplication.model.finedust.FinedustResult
 import com.tistory.jeongs0222.weatherapplication.ui.viewmodel.MainFinedustViewModel
 
 
-class FinedustAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class FinedustAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var mItem: FinedustResult? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
 
-        val binding : FinedustItemBinding= DataBindingUtil.inflate(layoutInflater, R.layout.finedust_item, parent, false)
+        val binding: FinedustItemBinding =
+            DataBindingUtil.inflate(layoutInflater, R.layout.finedust_item, parent, false)
 
         return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
-        (holder as ViewHolder).bind(mItem!!)
+        mItem?.let {
+            Log.e("123", "123")
+            (holder as ViewHolder).bind(it)
+        }
     }
 
-    override fun getItemCount(): Int = 0
+    override fun getItemCount(): Int = 1
 
     fun addItems(items: FinedustResult) {
+
         mItem = items
+        notifyDataSetChanged()
     }
 
-    class ViewHolder(private val binding: FinedustItemBinding): RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: FinedustItemBinding) : RecyclerView.ViewHolder(binding.root) {
         private val mainFinedustViewModel = MainFinedustViewModel()
 
-        fun bind(mItem: FinedustResult){
+        fun bind(mItem: FinedustResult) {
             mainFinedustViewModel.bind(mItem)
 
-
+            binding.mainFinedustViewModel = mainFinedustViewModel
         }
     }
 }

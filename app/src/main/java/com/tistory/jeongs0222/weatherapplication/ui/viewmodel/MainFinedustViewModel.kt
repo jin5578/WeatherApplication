@@ -1,5 +1,6 @@
 package com.tistory.jeongs0222.weatherapplication.ui.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tistory.jeongs0222.weatherapplication.model.finedust.FinedustResult
@@ -70,11 +71,12 @@ class MainFinedustViewModel: DisposableViewModel() {
 
 
     fun bind(bItem: FinedustResult) {
-        _pm10_concentration_textView.value = bItem.PM10
-        _pm25_concentration_textView.value = bItem.PM25
-        _nitrogen_concentration_textView.value = bItem.NITROGEN
-        _ozone_concentration_textView.value = bItem.OZONE
-        _carbon_concentration_textView.value = bItem.CARBON
-        _sulfurous_concentration_textView.value = bItem.SULFUROUS
+        Log.e("SULFUROUS", bItem.SULFUROUS)
+        _pm10_concentration_textView.value = bItem.PM10 + " ㎍/㎥"
+        _pm25_concentration_textView.value = bItem.PM25 + " ㎍/㎥"
+        _nitrogen_concentration_textView.value = bItem.NITROGEN + "ppm"
+        _ozone_concentration_textView.value = bItem.OZONE + " ppm"
+        _carbon_concentration_textView.value = bItem.CARBON + " ppm"
+        _sulfurous_concentration_textView.value = bItem.SULFUROUS + " ppm"
     }
 }
