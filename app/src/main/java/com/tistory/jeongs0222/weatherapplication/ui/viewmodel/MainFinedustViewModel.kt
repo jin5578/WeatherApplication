@@ -1,9 +1,10 @@
 package com.tistory.jeongs0222.weatherapplication.ui.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tistory.jeongs0222.weatherapplication.model.finedust.FinedustResult
+import com.tistory.jeongs0222.weatherapplication.utils.GradeDivider
+import com.tistory.jeongs0222.weatherapplication.utils.GradeDividerImpl
 
 
 class MainFinedustViewModel: DisposableViewModel() {
@@ -71,7 +72,17 @@ class MainFinedustViewModel: DisposableViewModel() {
 
 
     fun bind(bItem: FinedustResult) {
-        Log.e("SULFUROUS", bItem.SULFUROUS)
+        val gradeDivider = GradeDividerImpl() as GradeDivider
+
+        //상태
+        _pm10_status_textView.value = gradeDivider.pm10_divider(bItem.PM10.toInt())
+        _pm25_status_textView.value = gradeDivider.pm25_divider(bItem.PM25.toInt())
+        _nitrogen_status_textView.value = gradeDivider.nitrogen_divider(bItem.NITROGEN.toFloat())
+        _ozone_status_textView.value = gradeDivider.ozon_divider(bItem.OZONE.toFloat())
+        _carbon_status_textView.value = gradeDivider.carbon_divider(bItem.CARBON.toFloat())
+        _sulfurous_status_textView.value = gradeDivider.sulfurous_divider(bItem.SULFUROUS.toFloat())
+
+        //수치
         _pm10_concentration_textView.value = bItem.PM10 + " ㎍/㎥"
         _pm25_concentration_textView.value = bItem.PM25 + " ㎍/㎥"
         _nitrogen_concentration_textView.value = bItem.NITROGEN + "ppm"
