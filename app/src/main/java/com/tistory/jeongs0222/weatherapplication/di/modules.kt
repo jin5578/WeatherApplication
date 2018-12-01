@@ -4,10 +4,8 @@ import com.tistory.jeongs0222.weatherapplication.BuildConfig
 import com.tistory.jeongs0222.weatherapplication.R
 import com.tistory.jeongs0222.weatherapplication.api.FinedustApi
 import com.tistory.jeongs0222.weatherapplication.api.GeocoderApi
-import com.tistory.jeongs0222.weatherapplication.utils.finedustBaseUrl
-import com.tistory.jeongs0222.weatherapplication.utils.geocoderBaseUrl
-import com.tistory.jeongs0222.weatherapplication.utils.headerInterceptor
-import com.tistory.jeongs0222.weatherapplication.utils.loggingInterceptor
+import com.tistory.jeongs0222.weatherapplication.api.ShortForecastApi
+import com.tistory.jeongs0222.weatherapplication.utils.*
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -63,6 +61,18 @@ val apiModules: Module = module {
             .baseUrl(finedustBaseUrl)
             .build()
             .create(FinedustApi::class.java)
+    }
+
+    single {
+        Retrofit.Builder()
+            .client(OkHttpClient.Builder()
+                .addInterceptor(get(loggingInterceptor))
+                .build())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl(shortForecastBaseUrl)
+            .build()
+            .create(ShortForecastApi::class.java)
     }
 }
 

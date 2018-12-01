@@ -26,6 +26,8 @@ class FinedustAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
+        holder.setIsRecyclable(false)
+
         mItem?.let {
             Log.e("123", "123")
             (holder as ViewHolder).bind(it)
@@ -35,12 +37,13 @@ class FinedustAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun getItemCount(): Int = 1
 
     fun addItems(items: FinedustResult) {
-
         mItem = items
+
         notifyDataSetChanged()
     }
 
     class ViewHolder(private val binding: FinedustItemBinding) : RecyclerView.ViewHolder(binding.root) {
+
         private val mainFinedustViewModel = MainFinedustViewModel()
 
         fun bind(mItem: FinedustResult) {

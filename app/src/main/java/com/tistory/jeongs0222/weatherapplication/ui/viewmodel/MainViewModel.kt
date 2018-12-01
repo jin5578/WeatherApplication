@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tistory.jeongs0222.weatherapplication.adapter.FinedustAdapter
+import com.tistory.jeongs0222.weatherapplication.adapter.ShortForecastAdapter
 import com.tistory.jeongs0222.weatherapplication.model.Repository
 import com.tistory.jeongs0222.weatherapplication.utils.*
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -45,6 +46,8 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
 
     val finedustAdapter = FinedustAdapter()
 
+    val shortForecastAdapter = ShortForecastAdapter()
+
     init {
         //checkPermission()
         geoCoder()
@@ -52,6 +55,8 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
         getPresentDate()
 
         getFinedust()
+
+        getShortForecast()
     }
 
     /*private fun checkPermission() {
@@ -130,7 +135,40 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
                 it.printStackTrace()
             })
         )
+    }
 
+    //더미 값 넣어둠
+    fun getShortForecast() {
+        addDisposable(repository.getShortForecast(
+            "%2B%2B4DRXqUeVX3G7JHjDWjK6ezt9phL8Zi3t0o9OB5AWYVwq92UpGrNLX2NdHP4sgL2znxi6ntWh%2FoHxDjym6Mfg%3D%3D",
+            "20181201",
+            "1400",
+            "55",
+            "127",
+            "1000",
+            "1",
+            "json"
+        )
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            /*.filter {
+                for(i in 0..it.item.size) {
+                    if(it.item[i].category == "T1H") {
+                        return it.item[i]
+                    }
+                }
+                //it.item.size
+            }*/
+            .subscribe({
+                for(i in 0 .. it.item.size -1) {
+                    if(it.item[i].category == "T1H") {
+                        shortForecastAdapter.addItems(it.item[i])
+                    }
+                }
+                //shortForecastAdapter.addItems(it.item)
+            }, {
+                it.printStackTrace()
+            }))
     }
 
 }

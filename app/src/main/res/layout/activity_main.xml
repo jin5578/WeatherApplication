@@ -92,7 +92,7 @@
                     android:id="@+id/null2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="단기 예보"
+                    android:text="단기예보"
                     android:gravity="center"
                     android:textColor="@color/colorBlack"
                     android:textSize="18sp"
@@ -108,6 +108,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:scrollbars="none"
+                    android:adapter="@{mainViewModel.shortForecastAdapter}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/null2"/>
