@@ -1,10 +1,15 @@
 package com.tistory.jeongs0222.weatherapplication.ui.viewmodel
 
+import android.graphics.drawable.Drawable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.bumptech.glide.Glide
+import com.tistory.jeongs0222.weatherapplication.R
 import com.tistory.jeongs0222.weatherapplication.model.finedust.FinedustResult
-import com.tistory.jeongs0222.weatherapplication.utils.GradeDivider
-import com.tistory.jeongs0222.weatherapplication.utils.GradeDividerImpl
+import com.tistory.jeongs0222.weatherapplication.utils.EmoticonDivideProvider
+import com.tistory.jeongs0222.weatherapplication.utils.EmoticonDividerProviderImpl
+import com.tistory.jeongs0222.weatherapplication.utils.GradeDivideProvider
+import com.tistory.jeongs0222.weatherapplication.utils.GradeDivideProviderImpl
 
 
 class MainFinedustViewModel: DisposableViewModel() {
@@ -69,18 +74,27 @@ class MainFinedustViewModel: DisposableViewModel() {
     private val _sulfurous_concentration_textView = MutableLiveData<String>()
     val sulfurous_concentration_textView: LiveData<String> get() = _sulfurous_concentration_textView
 
-
+    val emoticon = arrayListOf(R.drawable.good, R.drawable.soso, R.drawable.bad, R.drawable.verybad)
 
     fun bind(bItem: FinedustResult) {
-        val gradeDivider = GradeDividerImpl() as GradeDivider
+
+        val gradeDivideProvider = GradeDivideProviderImpl() as GradeDivideProvider
+        val emoticonDivideProvider = EmoticonDividerProviderImpl() as EmoticonDivideProvider
+
+        val pm10_status = gradeDivideProvider.pm10_divider(bItem.PM10.toInt())
+        val pm25_status = gradeDivideProvider.pm25_divider(bItem.PM25.toInt())
+        val nitrogen_status = gradeDivideProvider.nitrogen_divider(bItem.NITROGEN.toFloat())
+        val ozon_status = gradeDivideProvider.ozon_divider(bItem.OZONE.toFloat())
+        val carbon_status = gradeDivideProvider.carbon_divider(bItem.CARBON.toFloat())
+        val sulfurous_status = gradeDivideProvider.sulfurous_divider(bItem.SULFUROUS.toFloat())
 
         //상태
-        _pm10_status_textView.value = gradeDivider.pm10_divider(bItem.PM10.toInt())
-        _pm25_status_textView.value = gradeDivider.pm25_divider(bItem.PM25.toInt())
-        _nitrogen_status_textView.value = gradeDivider.nitrogen_divider(bItem.NITROGEN.toFloat())
-        _ozone_status_textView.value = gradeDivider.ozon_divider(bItem.OZONE.toFloat())
-        _carbon_status_textView.value = gradeDivider.carbon_divider(bItem.CARBON.toFloat())
-        _sulfurous_status_textView.value = gradeDivider.sulfurous_divider(bItem.SULFUROUS.toFloat())
+        _pm10_status_textView.value = pm10_status
+        _pm25_status_textView.value = pm25_status
+        _nitrogen_status_textView.value = nitrogen_status
+        _ozone_status_textView.value = ozon_status
+        _carbon_status_textView.value = carbon_status
+        _sulfurous_status_textView.value = sulfurous_status
 
         //수치
         _pm10_concentration_textView.value = bItem.PM10 + " ㎍/㎥"
@@ -89,5 +103,13 @@ class MainFinedustViewModel: DisposableViewModel() {
         _ozone_concentration_textView.value = bItem.OZONE + " ppm"
         _carbon_concentration_textView.value = bItem.CARBON + " ppm"
         _sulfurous_concentration_textView.value = bItem.SULFUROUS + " ppm"
+
+        //이미지
+        /*_pm10_imageView.value = emoticonDivideProvider.emoticonDivider(pm10_status)
+        _pm25_imageView.value = emoticonDivideProvider.emoticonDivider(pm25_status)
+        _nitrogen_imageView.value = emoticonDivideProvider.emoticonDivider(nitrogen_status)
+        _ozone_imageView.value = emoticonDivideProvider.emoticonDivider(ozon_status)
+        _carbon_imageView.value = emoticonDivideProvider.emoticonDivider(carbon_status)
+        _sulfurous_imageView.value = emoticonDivideProvider.emoticonDivider(sulfurous_status)*/
     }
 }

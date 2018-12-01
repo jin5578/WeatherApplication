@@ -1,7 +1,7 @@
 package com.tistory.jeongs0222.weatherapplication.utils
 
 
-interface GradeDivider {
+interface GradeDivideProvider {
 
     fun pm10_divider(value: Int): String
 
@@ -16,7 +16,7 @@ interface GradeDivider {
     fun sulfurous_divider(value: Float): String
 }
 
-class GradeDividerImpl : GradeDivider {
+class GradeDivideProviderImpl : GradeDivideProvider {
 
     override fun pm10_divider(value: Int): String {
 

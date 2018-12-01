@@ -1,10 +1,13 @@
 package com.tistory.jeongs0222.weatherapplication.adapter
 
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.tistory.jeongs0222.weatherapplication.R
 import com.tistory.jeongs0222.weatherapplication.databinding.ShortforecastItemBinding
 import com.tistory.jeongs0222.weatherapplication.model.shortForecast.ShortForecastItem
@@ -53,6 +56,8 @@ class ShortForecastAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     class ViewHolder(private val binding: ShortforecastItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
         private val mainShortForecastViewModel = MainShortForecastViewModel()
+
+
 
         fun bind(mItem: ShortForecastResult) {
             mainShortForecastViewModel.bind(mItem)

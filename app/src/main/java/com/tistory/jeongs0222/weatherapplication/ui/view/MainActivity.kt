@@ -9,6 +9,7 @@ import android.provider.Settings
 import android.widget.HorizontalScrollView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tistory.jeongs0222.weatherapplication.R
 import com.tistory.jeongs0222.weatherapplication.databinding.ActivityMainBinding
@@ -37,7 +38,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         super.onCreate(savedInstanceState)
 
         viewDataBinding.finedustRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        viewDataBinding.shortForecastRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        viewDataBinding.shortForecastRecyclerView.layoutManager = GridLayoutManager(this, 4)
 
         //val mainViewModel = MainViewModel(permissionProvider, locationProvider)
 

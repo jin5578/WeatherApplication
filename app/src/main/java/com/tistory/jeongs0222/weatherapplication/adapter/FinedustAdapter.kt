@@ -1,10 +1,13 @@
 package com.tistory.jeongs0222.weatherapplication.adapter
 
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.tistory.jeongs0222.weatherapplication.R
 import com.tistory.jeongs0222.weatherapplication.databinding.FinedustItemBinding
 import com.tistory.jeongs0222.weatherapplication.model.finedust.FinedustResult

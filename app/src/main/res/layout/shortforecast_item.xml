@@ -16,32 +16,33 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="20dp">
-
-        <ImageView
-                android:id="@+id/status_imageView"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/sun"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
                 android:id="@+id/time_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:text="@{mainShortForecastViewModel.time_textView}"
                 android:textColor="@color/colorBlack"
                 android:textSize="12sp"
                 android:fontFamily="@font/goyang"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/status_imageView"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:text="7PM"/>
+
+        <ImageView
+                android:id="@+id/status_imageView"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/sun"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/time_textView"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
 
         <TextView
                 android:id="@+id/temperature_textView"
@@ -54,7 +55,7 @@
                 android:fontFamily="@font/goyang"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/time_textView"
+                app:layout_constraintTop_toBottomOf="@id/status_imageView"
                 app:layout_constraintBottom_toBottomOf="parent"
                 tools:text="7°"/>
 
