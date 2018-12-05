@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.tistory.jeongs0222.weatherapplication.adapter.FinedustAdapter
 import com.tistory.jeongs0222.weatherapplication.adapter.ShortForecastAdapter
 import com.tistory.jeongs0222.weatherapplication.model.Repository
+import com.tistory.jeongs0222.weatherapplication.model.shortForecast.ShortForecastResult
 import com.tistory.jeongs0222.weatherapplication.utils.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -141,7 +142,7 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
     fun getShortForecast() {
         addDisposable(repository.getShortForecast(
             "%2B%2B4DRXqUeVX3G7JHjDWjK6ezt9phL8Zi3t0o9OB5AWYVwq92UpGrNLX2NdHP4sgL2znxi6ntWh%2FoHxDjym6Mfg%3D%3D",
-            "20181201",
+            "20181205",
             "1400",
             "55",
             "127",
@@ -151,6 +152,14 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
         )
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+            .toObservable()
+            .map { it.item }
+            .flatMapIterable { it }
+            .filter { it.category == "T1H" }
+            .doOnNext {shortForecastAdapter.addItems(it)}
+            .doOnError {it.printStackTrace()}
+            .subscribe())
+
             /*.filter {
                 for(i in 0..it.item.size) {
                     if(it.item[i].category == "T1H") {
@@ -159,7 +168,7 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
                 }
                 //it.item.size
             }*/
-            .subscribe({
+            /*.subscribe({
                 for(i in 0 .. it.item.size -1) {
                     if(it.item[i].category == "T1H") {
                         shortForecastAdapter.addItems(it.item[i])
@@ -168,7 +177,7 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
                 //shortForecastAdapter.addItems(it.item)
             }, {
                 it.printStackTrace()
-            }))
+            }))*/
     }
 
 }
