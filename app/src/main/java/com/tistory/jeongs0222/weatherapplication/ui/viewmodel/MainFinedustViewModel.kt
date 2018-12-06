@@ -105,6 +105,8 @@ class MainFinedustViewModel: DisposableViewModel() {
         _sulfurous_concentration_textView.value = bItem.SULFUROUS + " ppm"
 
         //이미지
+
+
         /*_pm10_imageView.value = emoticonDivideProvider.emoticonDivider(pm10_status)
         _pm25_imageView.value = emoticonDivideProvider.emoticonDivider(pm25_status)
         _nitrogen_imageView.value = emoticonDivideProvider.emoticonDivider(nitrogen_status)

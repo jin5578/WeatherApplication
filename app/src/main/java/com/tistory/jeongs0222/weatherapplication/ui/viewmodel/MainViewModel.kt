@@ -142,7 +142,7 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
     fun getShortForecast() {
         addDisposable(repository.getShortForecast(
             "%2B%2B4DRXqUeVX3G7JHjDWjK6ezt9phL8Zi3t0o9OB5AWYVwq92UpGrNLX2NdHP4sgL2znxi6ntWh%2FoHxDjym6Mfg%3D%3D",
-            "20181205",
+            "20181206",
             "1400",
             "55",
             "127",
@@ -179,5 +179,7 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
                 it.printStackTrace()
             }))*/
     }
+
+
 
 }
