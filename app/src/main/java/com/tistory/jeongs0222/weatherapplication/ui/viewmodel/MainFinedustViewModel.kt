@@ -1,9 +1,7 @@
 package com.tistory.jeongs0222.weatherapplication.ui.viewmodel
 
-import android.graphics.drawable.Drawable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.bumptech.glide.Glide
 import com.tistory.jeongs0222.weatherapplication.R
 import com.tistory.jeongs0222.weatherapplication.model.finedust.FinedustResult
 import com.tistory.jeongs0222.weatherapplication.utils.EmoticonDivideProvider
@@ -15,8 +13,8 @@ import com.tistory.jeongs0222.weatherapplication.utils.GradeDivideProviderImpl
 class MainFinedustViewModel: DisposableViewModel() {
 
     //미세먼지
-    private val _pm10_imageView = MutableLiveData<String>()
-    val pm10_imageView: LiveData<String> get() = _pm10_imageView
+    private val _pm10_imageView = MutableLiveData<Int>()
+    val pm10_imageView: LiveData<Int> get() = _pm10_imageView
 
     private val _pm10_status_textView = MutableLiveData<String>()
     val pm10_status_textView: LiveData<String> get() = _pm10_status_textView
@@ -25,8 +23,8 @@ class MainFinedustViewModel: DisposableViewModel() {
     val pm10_concentration_textView: LiveData<String> get() = _pm10_concentration_textView
 
     //초미세먼지
-    private val _pm25_imageView = MutableLiveData<String>()
-    val pm25_imageView: LiveData<String> get() = pm25_imageView
+    private val _pm25_imageView = MutableLiveData<Int>()
+    val pm25_imageView: LiveData<Int> get() = _pm25_imageView
 
     private val _pm25_status_textView = MutableLiveData<String>()
     val pm25_status_textView: LiveData<String> get() = _pm25_status_textView
@@ -35,8 +33,8 @@ class MainFinedustViewModel: DisposableViewModel() {
     val pm25_concentration_textView: LiveData<String> get() = _pm25_concentration_textView
 
     //이산화질소
-    private val _nitrogen_imageView = MutableLiveData<String>()
-    val nitrogen_imageView: LiveData<String> get() = _nitrogen_imageView
+    private val _nitrogen_imageView = MutableLiveData<Int>()
+    val nitrogen_imageView: LiveData<Int> get() = _nitrogen_imageView
 
     private val _nitrogen_status_textView = MutableLiveData<String>()
     val nitrogen_status_textView: LiveData<String> get() = _nitrogen_status_textView
@@ -45,8 +43,8 @@ class MainFinedustViewModel: DisposableViewModel() {
     val nitrogen_concentration_textView: LiveData<String> get() = _nitrogen_concentration_textView
 
     //오존
-    private val _ozone_imageView = MutableLiveData<String>()
-    val ozone_imageView: LiveData<String> get() = _ozone_imageView
+    private val _ozone_imageView = MutableLiveData<Int>()
+    val ozone_imageView: LiveData<Int> get() = _ozone_imageView
 
     private val _ozone_status_textView = MutableLiveData<String>()
     val ozone_status_textView: LiveData<String> get() = _ozone_status_textView
@@ -55,8 +53,8 @@ class MainFinedustViewModel: DisposableViewModel() {
     val ozone_concentration_textView: LiveData<String> get() = _ozone_concentration_textView
 
     //일산화탄소
-    private val _carbon_imageView = MutableLiveData<String>()
-    val carbon_imageView: LiveData<String> get() = _carbon_imageView
+    private val _carbon_imageView = MutableLiveData<Int>()
+    val carbon_imageView: LiveData<Int> get() = _carbon_imageView
 
     private val _carbon_status_textView = MutableLiveData<String>()
     val carbon_status_textView: LiveData<String> get() = _carbon_status_textView
@@ -65,8 +63,8 @@ class MainFinedustViewModel: DisposableViewModel() {
     val carbon_concentration_textView: LiveData<String> get() = _carbon_concentration_textView
 
     //아황산가스
-    private val _sulfurous_imageView = MutableLiveData<String>()
-    val sulfurous_imageView: LiveData<String> get() = _sulfurous_imageView
+    private val _sulfurous_imageView = MutableLiveData<Int>()
+    val sulfurous_imageView: LiveData<Int> get() = _sulfurous_imageView
 
     private val _sulfurous_status_textView = MutableLiveData<String>()
     val sulfurous_status_textView: LiveData<String> get() = _sulfurous_status_textView
@@ -105,13 +103,11 @@ class MainFinedustViewModel: DisposableViewModel() {
         _sulfurous_concentration_textView.value = bItem.SULFUROUS + " ppm"
 
         //이미지
-
-
-        /*_pm10_imageView.value = emoticonDivideProvider.emoticonDivider(pm10_status)
+        _pm10_imageView.value = emoticonDivideProvider.emoticonDivider(pm10_status)
         _pm25_imageView.value = emoticonDivideProvider.emoticonDivider(pm25_status)
         _nitrogen_imageView.value = emoticonDivideProvider.emoticonDivider(nitrogen_status)
         _ozone_imageView.value = emoticonDivideProvider.emoticonDivider(ozon_status)
         _carbon_imageView.value = emoticonDivideProvider.emoticonDivider(carbon_status)
-        _sulfurous_imageView.value = emoticonDivideProvider.emoticonDivider(sulfurous_status)*/
+        _sulfurous_imageView.value = emoticonDivideProvider.emoticonDivider(sulfurous_status)
     }
 }

@@ -118,10 +118,10 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="10dp"
-                    android:src="@drawable/sun"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/null2"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:imageUrl="@{mainFinedustViewModel.pm25_imageView}"
                     tools:src="@drawable/sun"/>
 
             <TextView
@@ -181,10 +181,10 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="10dp"
-                    android:src="@drawable/sun"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/null3"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:imageUrl="@{mainFinedustViewModel.nitrogen_imageView}"
                     tools:src="@drawable/sun"/>
 
             <TextView
@@ -244,10 +244,10 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="10dp"
-                    android:src="@drawable/sun"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/null4"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:imageUrl="@{mainFinedustViewModel.ozone_imageView}"
                     tools:src="@drawable/sun"/>
 
             <TextView
@@ -311,6 +311,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/null5"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:imageUrl="@{mainFinedustViewModel.carbon_imageView}"
                     tools:src="@drawable/sun"/>
 
             <TextView
@@ -370,10 +371,10 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="10dp"
-                    android:src="@drawable/sun"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/null6"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:imageUrl="@{mainFinedustViewModel.carbon_imageView}"
                     tools:src="@drawable/sun"/>
 
             <TextView
