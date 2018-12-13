@@ -2,7 +2,6 @@ package com.tistory.jeongs0222.weatherapplication.ui.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.tistory.jeongs0222.weatherapplication.R
 import com.tistory.jeongs0222.weatherapplication.model.finedust.FinedustResult
 import com.tistory.jeongs0222.weatherapplication.utils.EmoticonDivideProvider
 import com.tistory.jeongs0222.weatherapplication.utils.EmoticonDividerProviderImpl
@@ -11,7 +10,6 @@ import com.tistory.jeongs0222.weatherapplication.utils.GradeDivideProviderImpl
 
 
 class MainFinedustViewModel: DisposableViewModel() {
-    
     //미세먼지
     private val pm10I = MutableLiveData<Int>()
     val _pm10I: LiveData<Int> get() = pm10I
@@ -73,11 +71,7 @@ class MainFinedustViewModel: DisposableViewModel() {
     val _sulfurousConcentrationT: LiveData<String> get() = sulfurousConcentrationT
 
 
-
-    val emoticon = arrayListOf(R.drawable.good, R.drawable.soso, R.drawable.bad, R.drawable.verybad)
-
     fun bind(bItem: FinedustResult) {
-
         val gradeDivideProvider = GradeDivideProviderImpl() as GradeDivideProvider
         val emoticonDivideProvider = EmoticonDividerProviderImpl() as EmoticonDivideProvider
 

@@ -17,7 +17,6 @@ interface GradeDivideProvider {
 }
 
 class GradeDivideProviderImpl : GradeDivideProvider {
-
     override fun pm10_divider(value: Int): String {
 
         when (value) {

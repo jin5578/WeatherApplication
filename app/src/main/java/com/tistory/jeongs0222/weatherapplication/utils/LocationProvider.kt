@@ -18,7 +18,6 @@ interface LocationProvider {
 }
 
 class LocationProviderImpl(private val activity: Activity): LocationProvider {
-
     private lateinit var mCurrentLocation: Location
     private lateinit var mFusedLocationClient: FusedLocationProviderClient
 
@@ -65,5 +64,4 @@ class LocationProviderImpl(private val activity: Activity): LocationProvider {
 
         return array[1]
     }
-
 }

@@ -1,6 +1,5 @@
 package com.tistory.jeongs0222.weatherapplication.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -12,11 +11,9 @@ import com.tistory.jeongs0222.weatherapplication.ui.viewmodel.MainShortForecastV
 
 
 class ShortForecastAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
     private var tItem: MutableList<ShortForecastResult> = ArrayList()
 
     private var sItem: MutableList<ShortForecastResult> = ArrayList()
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)

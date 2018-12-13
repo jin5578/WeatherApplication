@@ -11,6 +11,7 @@
         <variable
                 name="splashViewModel"
                 type="com.tistory.jeongs0222.weatherapplication.ui.viewmodel.SplashViewModel"/>
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

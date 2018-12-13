@@ -18,7 +18,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 val apiModules: Module = module {
-
     single {
         Retrofit.Builder()
             .client(OkHttpClient.Builder()

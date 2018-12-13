@@ -1,13 +1,9 @@
 package com.tistory.jeongs0222.weatherapplication.adapter
 
-import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.tistory.jeongs0222.weatherapplication.R
 import com.tistory.jeongs0222.weatherapplication.databinding.FinedustItemBinding
 import com.tistory.jeongs0222.weatherapplication.model.finedust.FinedustResult
@@ -15,7 +11,6 @@ import com.tistory.jeongs0222.weatherapplication.ui.viewmodel.MainFinedustViewMo
 
 
 class FinedustAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
     private var mItem: FinedustResult? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -32,7 +27,6 @@ class FinedustAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         holder.setIsRecyclable(false)
 
         mItem?.let {
-            Log.e("123", "123")
             (holder as ViewHolder).bind(it)
         }
     }
@@ -46,7 +40,6 @@ class FinedustAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     class ViewHolder(private val binding: FinedustItemBinding) : RecyclerView.ViewHolder(binding.root) {
-
         private val mainFinedustViewModel = MainFinedustViewModel()
 
         fun bind(mItem: FinedustResult) {

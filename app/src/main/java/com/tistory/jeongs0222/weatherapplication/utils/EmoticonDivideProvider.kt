@@ -1,7 +1,5 @@
 package com.tistory.jeongs0222.weatherapplication.utils
 
-import com.tistory.jeongs0222.weatherapplication.R
-
 
 interface EmoticonDivideProvider {
 
@@ -26,5 +24,4 @@ class EmoticonDividerProviderImpl: EmoticonDivideProvider {
             else -> 0
         }
     }
-
 }
