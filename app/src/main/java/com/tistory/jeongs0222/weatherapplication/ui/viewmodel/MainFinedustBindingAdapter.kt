@@ -12,7 +12,6 @@ fun setImageUrl(view: ImageView, status: Int?) {
     if (status != null) {
         when (status) {
             0 ->
-
                 Glide.with(view.context)
                     .load(R.drawable.good)
                     .into(view)

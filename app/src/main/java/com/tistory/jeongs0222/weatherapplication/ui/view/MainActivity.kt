@@ -45,7 +45,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         val mainViewModel = ViewModelProviders.of(this, mainViewModelFactory).get(MainViewModel::class.java)
         //mainViewModel.bind()
 
-        mainViewModel.location_imageView.observe(this, Observer {
+        mainViewModel._mainLocationI.observe(this, Observer {
            //mainViewModel.checkPermissionImage()
         })
 

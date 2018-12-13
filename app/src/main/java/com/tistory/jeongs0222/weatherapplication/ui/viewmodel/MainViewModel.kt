@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import com.tistory.jeongs0222.weatherapplication.adapter.FinedustAdapter
 import com.tistory.jeongs0222.weatherapplication.adapter.ShortForecastAdapter
 import com.tistory.jeongs0222.weatherapplication.model.Repository
-import com.tistory.jeongs0222.weatherapplication.model.shortForecast.ShortForecastResult
 import com.tistory.jeongs0222.weatherapplication.utils.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -15,33 +14,26 @@ import io.reactivex.schedulers.Schedulers
 //class MainViewModel(private val permissionProvider: PermissionProvider, private val locationProvider: LocationProvider) : DisposableViewModel() {
 class MainViewModel(private val repository: Repository) : DisposableViewModel() {
 
-    private val _present_location_textView = MutableLiveData<String>()
-    val location_textView: LiveData<String>
-        get() = _present_location_textView
+    private val preLocationT = MutableLiveData<String>()
+    val _preLocationT: LiveData<String> get() = preLocationT
 
-    private val _present_time_textView = MutableLiveData<String>()
-    val time_textView: LiveData<String>
-        get() = _present_time_textView
+    private val preTimeT = MutableLiveData<String>()
+    val _preTimeT: LiveData<String> get() = preTimeT
 
-    private val _present_emoticon_imageView = MutableLiveData<String>()
-    val emoticon_imageView: LiveData<String>
-        get() = _present_emoticon_imageView
+    private val preEmoticonI = MutableLiveData<String>()
+    val _preEmoticonI: LiveData<String> get() = preEmoticonI
 
-    private val _present_status_textView = MutableLiveData<String>()
-    val status_textView: LiveData<String>
-        get() = _present_status_textView
+    private val preStatusT = MutableLiveData<String>()
+    val _preStatusT: LiveData<String> get() = preStatusT
 
-    private val _present_explanation_textView = MutableLiveData<String>()
-    val explation_textView: LiveData<String>
-        get() = _present_explanation_textView
+    private val preExplanationT = MutableLiveData<String>()
+    val _preExplanationT: LiveData<String> get() = preExplanationT
 
-    private val _main_location_imageView = SingleLiveEvent<Any>()
-    val location_imageView: LiveData<Any>
-        get() = _main_location_imageView
+    private val mainLocationI = SingleLiveEvent<Any>()
+    val _mainLocationI: LiveData<Any> get() = mainLocationI
 
     private val _showDialog = SingleLiveEvent<Any>()
-    val showDialog: LiveData<Any>
-        get() = _showDialog
+    val showDialog: LiveData<Any> get() = _showDialog
 
     //private var compositeDisposable = CompositeDisposable()
 
@@ -49,8 +41,10 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
 
     val shortForecastAdapter = ShortForecastAdapter()
 
+
     init {
         //checkPermission()
+
         geoCoder()
 
         getPresentDate()
@@ -74,13 +68,13 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
     }*/
 
     fun bind() {
-        _present_location_textView.value = "영등포구 당산동 6가"
-        _present_status_textView.value = "매우 좋음"
-        _present_explanation_textView.value = "화창합니다! 외출을 나가세요!"
+        preLocationT.value = "영등포구 당산동 6가"
+        preStatusT.value = "매우 좋음"
+        preExplanationT.value = "화창합니다! 외출을 나가세요!"
     }
 
     fun locationClickEvent() {
-        _main_location_imageView.call()
+        mainLocationI.call()
     }
 
     /*fun checkPermissionImage() {
@@ -102,7 +96,7 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    _present_location_textView.value = it.address
+                    preLocationT.value = it.address
                 }, {
                     it.printStackTrace()
                 })
@@ -112,37 +106,39 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
     fun getPresentDate() {
         val dateProvider = DateProviderImpl() as DateProvider
 
-        _present_time_textView.value = dateProvider.getDate()
+        preTimeT.value = dateProvider.getDate()
     }
 
     //더미 값 넣어둠
     fun getFinedust() {
         Log.e("start", "start")
-        addDisposable(repository.getFinedust(
-            "644c7563526a696e36336d50516942",
-            "json",
-            "ListAirQualityByDistrictService",
-            1,
-            5,
-            "111142"
-        )
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                Log.e("PM10", it.PM10)
-                finedustAdapter.addItems(it)
-            }, {
-                Log.e("fail", "fail")
-                it.printStackTrace()
-            })
+        addDisposable(
+            repository.getFinedust(
+                "644c7563526a696e36336d50516942",
+                "json",
+                "ListAirQualityByDistrictService",
+                1,
+                5,
+                "111142"
+            )
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    Log.e("PM10", it.PM10)
+                    finedustAdapter.addItems(it)
+                }, {
+                    Log.e("fail", "fail")
+                    it.printStackTrace()
+                })
         )
     }
 
     //더미 값 넣어둠
     fun getShortForecast() {
+
         addDisposable(repository.getShortForecast(
             "%2B%2B4DRXqUeVX3G7JHjDWjK6ezt9phL8Zi3t0o9OB5AWYVwq92UpGrNLX2NdHP4sgL2znxi6ntWh%2FoHxDjym6Mfg%3D%3D",
-            "20181206",
+            "20181213",
             "1400",
             "55",
             "127",
@@ -155,31 +151,12 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
             .toObservable()
             .map { it.item }
             .flatMapIterable { it }
-            .filter { it.category == "T1H" }
-            .doOnNext {shortForecastAdapter.addItems(it)}
-            .doOnError {it.printStackTrace()}
+            .filter { it.category == "T1H" || it.category == "SKY"}
+            .doOnNext { shortForecastAdapter.addItems(it) }
+            .doOnError { it.printStackTrace() }
             .subscribe())
 
-            /*.filter {
-                for(i in 0..it.item.size) {
-                    if(it.item[i].category == "T1H") {
-                        return it.item[i]
-                    }
-                }
-                //it.item.size
-            }*/
-            /*.subscribe({
-                for(i in 0 .. it.item.size -1) {
-                    if(it.item[i].category == "T1H") {
-                        shortForecastAdapter.addItems(it.item[i])
-                    }
-                }
-                //shortForecastAdapter.addItems(it.item)
-            }, {
-                it.printStackTrace()
-            }))*/
+        //_present_emoticon_imageView.value = skyProvider.getItems().fcstValue
+        //Log.e("123456", skyProvider.getItems().fcstValue)
     }
-
-
-
 }

@@ -39,17 +39,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>
 
-            <!--<ImageView
-                    android:id="@+id/pm10_imageView"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="10dp"
-                    android:src="@drawable/sun"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/null1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    tools:src="@drawable/sun"/>-->
-
             <ImageView
                     android:id="@+id/pm10_imageView"
                     android:layout_width="50dp"
@@ -58,7 +47,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/null1"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:imageUrl="@{mainFinedustViewModel.pm10_imageView}"
+                    app:imageUrl="@{mainFinedustViewModel._pm10I}"
                     tools:src="@drawable/sun"/>
 
             <TextView
@@ -66,7 +55,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="@{mainFinedustViewModel.pm10_status_textView}"
+                    android:text="@{mainFinedustViewModel._pm10StatusT}"
                     android:textColor="@color/colorBlack"
                     android:textSize="12sp"
                     android:fontFamily="@font/goyang"
@@ -80,7 +69,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="@{mainFinedustViewModel.pm10_concentration_textView}"
+                    android:text="@{mainFinedustViewModel._pm10ConcentrationT}"
                     android:textColor="@color/colorBlack"
                     android:textSize="12sp"
                     android:fontFamily="@font/goyang"
@@ -121,7 +110,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/null2"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:imageUrl="@{mainFinedustViewModel.pm25_imageView}"
+                    app:imageUrl="@{mainFinedustViewModel._pm25I}"
                     tools:src="@drawable/sun"/>
 
             <TextView
@@ -129,7 +118,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="@{mainFinedustViewModel.pm25_status_textView}"
+                    android:text="@{mainFinedustViewModel._pm25StatusT}"
                     android:textColor="@color/colorBlack"
                     android:textSize="12sp"
                     android:fontFamily="@font/goyang"
@@ -143,7 +132,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="@{mainFinedustViewModel.pm25_concentration_textView}"
+                    android:text="@{mainFinedustViewModel._pm25ConcentrationT}"
                     android:textColor="@color/colorBlack"
                     android:textSize="12sp"
                     android:fontFamily="@font/goyang"
@@ -184,7 +173,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/null3"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:imageUrl="@{mainFinedustViewModel.nitrogen_imageView}"
+                    app:imageUrl="@{mainFinedustViewModel._nitrogenI}"
                     tools:src="@drawable/sun"/>
 
             <TextView
@@ -192,7 +181,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="@{mainFinedustViewModel.nitrogen_status_textView}"
+                    android:text="@{mainFinedustViewModel._nitrogenStatusT}"
                     android:textColor="@color/colorBlack"
                     android:textSize="12sp"
                     android:fontFamily="@font/goyang"
@@ -206,7 +195,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="@{mainFinedustViewModel.nitrogen_concentration_textView}"
+                    android:text="@{mainFinedustViewModel._nitrogenConcentrationT}"
                     android:textColor="@color/colorBlack"
                     android:textSize="12sp"
                     android:fontFamily="@font/goyang"
@@ -247,7 +236,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/null4"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:imageUrl="@{mainFinedustViewModel.ozone_imageView}"
+                    app:imageUrl="@{mainFinedustViewModel._ozoneI}"
                     tools:src="@drawable/sun"/>
 
             <TextView
@@ -255,7 +244,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="@{mainFinedustViewModel.ozone_status_textView}"
+                    android:text="@{mainFinedustViewModel._ozoneStatusT}"
                     android:textColor="@color/colorBlack"
                     android:textSize="12sp"
                     android:fontFamily="@font/goyang"
@@ -269,7 +258,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="@{mainFinedustViewModel.ozone_concentration_textView}"
+                    android:text="@{mainFinedustViewModel._ozoneConcentrationT}"
                     android:textColor="@color/colorBlack"
                     android:textSize="12sp"
                     android:fontFamily="@font/goyang"
@@ -311,7 +300,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/null5"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:imageUrl="@{mainFinedustViewModel.carbon_imageView}"
+                    app:imageUrl="@{mainFinedustViewModel._carbonI}"
                     tools:src="@drawable/sun"/>
 
             <TextView
@@ -319,7 +308,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="@{mainFinedustViewModel.carbon_status_textView}"
+                    android:text="@{mainFinedustViewModel._carbonStatusT}"
                     android:textColor="@color/colorBlack"
                     android:textSize="12sp"
                     android:fontFamily="@font/goyang"
@@ -333,7 +322,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="@{mainFinedustViewModel.carbon_concentration_textView}"
+                    android:text="@{mainFinedustViewModel._carbonConcentrationT}"
                     android:textColor="@color/colorBlack"
                     android:textSize="12sp"
                     android:fontFamily="@font/goyang"
@@ -374,7 +363,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/null6"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:imageUrl="@{mainFinedustViewModel.carbon_imageView}"
+                    app:imageUrl="@{mainFinedustViewModel._sulfurousI}"
                     tools:src="@drawable/sun"/>
 
             <TextView
@@ -382,7 +371,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="@{mainFinedustViewModel.sulfurous_status_textView}"
+                    android:text="@{mainFinedustViewModel._sulfurousStatusT}"
                     android:textColor="@color/colorBlack"
                     android:textSize="12sp"
                     android:fontFamily="@font/goyang"
@@ -396,7 +385,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="@{mainFinedustViewModel.sulfurous_concentration_textView}"
+                    android:text="@{mainFinedustViewModel._sulfurousConcentrationT}"
                     android:textColor="@color/colorBlack"
                     android:textSize="12sp"
                     android:fontFamily="@font/goyang"
