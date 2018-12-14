@@ -37,8 +37,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewDataBinding.finedustRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        viewDataBinding.shortForecastRecyclerView.layoutManager = GridLayoutManager(this, 4)
+        viewDataBinding.mainFinedustLayout.finedustRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        viewDataBinding.mainShortforecastLayout.shortForecastRecyclerView.layoutManager = GridLayoutManager(this, 4)
+        //viewDataBinding.finedustRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        //viewDataBinding.shortForecastRecyclerView.layoutManager = GridLayoutManager(this, 4)
 
         //val mainViewModel = MainViewModel(permissionProvider, locationProvider)
 
@@ -53,9 +55,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             alertDialog()
         })
 
-
         viewDataBinding.mainViewModel = mainViewModel
-        viewDataBinding.setLifecycleOwner(this)
+        viewDataBinding.setLifecycleOwner(this@MainActivity)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {

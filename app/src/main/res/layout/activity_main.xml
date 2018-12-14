@@ -45,67 +45,25 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"/>
 
-            <TextView
-                    android:id="@+id/null1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="미세먼지"
-                    android:gravity="center"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="18sp"
-                    android:fontFamily="@font/goyang"
-                    android:padding="15dp"
-                    android:background="@color/lightGray"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/main_present_layout"/>
-
-            <!--<include
-                    android:id="@+id/main_recycler_layout"
+            <include
+                    android:id="@+id/main_finedust_layout"
                     layout="@layout/main_finedust_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:viewModel="@{mainViewModel}"
+                    app:layout_constraintTop_toBottomOf="@id/main_present_layout"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/null1"/>-->
+                    app:layout_constraintEnd_toEndOf="parent"/>
 
-            <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/finedust_recyclerView"
-                    android:layout_width="0dp"
+            <include
+                    android:id="@+id/main_shortforecast_layout"
+                    layout="@layout/main_shortforecast_layout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:scrollbars="none"
-                    android:adapter="@{mainViewModel.finedustAdapter}"
+                    app:viewModel="@{mainViewModel}"
+                    app:layout_constraintTop_toBottomOf="@id/main_finedust_layout"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/null1">
-
-            </androidx.recyclerview.widget.RecyclerView>
-
-            <TextView
-                    android:id="@+id/null2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="단기예보"
-                    android:gravity="center"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="18sp"
-                    android:fontFamily="@font/goyang"
-                    android:padding="15dp"
-                    android:background="@color/lightGray"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/finedust_recyclerView"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/shortForecast_recyclerView"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:scrollbars="none"
-                    android:adapter="@{mainViewModel.shortForecastAdapter}"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/null2"/>
+                    app:layout_constraintEnd_toEndOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

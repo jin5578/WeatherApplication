@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+                name="viewModel"
+                type="com.tistory.jeongs0222.weatherapplication.ui.viewmodel.MainViewModel"/>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <View
+                android:id="@+id/null6"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/lightGray"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/finedust_recyclerView"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+                android:id="@+id/null7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:text="단기예보"
+                android:fontFamily="@font/goyang"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/null6"/>
+
+        <View
+                android:id="@+id/null8"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/lightGray"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/null7"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/shortForecast_recyclerView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:adapter="@{viewModel.shortForecastAdapter}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/null8"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
+
