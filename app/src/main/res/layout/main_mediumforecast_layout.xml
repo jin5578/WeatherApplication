@@ -32,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="15dp"
-                android:text="미세먼지"
+                android:text="중기예보"
                 android:fontFamily="@font/goyang"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/null1"/>
@@ -47,16 +47,14 @@
                 app:layout_constraintEnd_toEndOf="parent"/>
 
         <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/finedust_recyclerView"
+                android:id="@+id/mediumForecast_recyclerView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
-                android:adapter="@{viewModel.finedustAdapter}"
+                android:adapter="@{viewModel.mediumForecastAdapter}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/null3">
-
-        </androidx.recyclerview.widget.RecyclerView>
+                app:layout_constraintTop_toBottomOf="@id/null3"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

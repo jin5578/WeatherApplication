@@ -65,6 +65,16 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"/>
 
+            <include
+                    android:id="@+id/main_mediumfirecast_layout"
+                    layout="@layout/main_mediumforecast_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:viewModel="@{mainViewModel}"
+                    app:layout_constraintTop_toBottomOf="@id/main_shortforecast_layout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>

@@ -11,6 +11,7 @@ import com.tistory.jeongs0222.weatherapplication.ui.viewmodel.MainFinedustViewMo
 
 
 class FinedustAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
     private var mItem: FinedustResult? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

@@ -2,14 +2,20 @@ package com.tistory.jeongs0222.weatherapplication.model
 
 import com.tistory.jeongs0222.weatherapplication.api.FinedustApi
 import com.tistory.jeongs0222.weatherapplication.api.GeocoderApi
+import com.tistory.jeongs0222.weatherapplication.api.MediumForecastApi
 import com.tistory.jeongs0222.weatherapplication.api.ShortForecastApi
 import com.tistory.jeongs0222.weatherapplication.model.finedust.FinedustResult
 import com.tistory.jeongs0222.weatherapplication.model.geocoder.GeocoderAddress
+import com.tistory.jeongs0222.weatherapplication.model.mediumForecast.MediumForecastItem
+import com.tistory.jeongs0222.weatherapplication.model.mediumForecast.MediumForecastName
+import com.tistory.jeongs0222.weatherapplication.model.mediumForecast.MediumForecastResult
 import com.tistory.jeongs0222.weatherapplication.model.shortForecast.ShortForecastItem
+import com.tistory.jeongs0222.weatherapplication.model.shortForecast.ShortForecastResult
 import io.reactivex.Single
 
 
-class NetworkRepositoryImpl(private val geocoderApi: GeocoderApi, private val finedustApi: FinedustApi, private val shortForecastApi: ShortForecastApi) : Repository {
+class NetworkRepositoryImpl(private val geocoderApi: GeocoderApi, private val finedustApi: FinedustApi, private val shortForecastApi: ShortForecastApi, private val mediumForecastApi: MediumForecastApi) : Repository {
+
     override fun getGeocoder(
         request: String,
         version: Float,
@@ -60,5 +66,17 @@ class NetworkRepositoryImpl(private val geocoderApi: GeocoderApi, private val fi
 
     }
 
-
+    override fun getMediumForecast(
+        serviceKey: String,
+        regId: String,
+        tmFc: String,
+        numOfRows: String,
+        pageNo: String,
+        type: String
+    ): Single<MediumForecastResult> {
+        return mediumForecastApi.mediumForecast(serviceKey, regId, tmFc, numOfRows, pageNo, type)
+            .map {
+                it.response.body.items.item
+            }
+    }
 }

@@ -4,8 +4,10 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tistory.jeongs0222.weatherapplication.adapter.FinedustAdapter
+import com.tistory.jeongs0222.weatherapplication.adapter.MediumForecastAdapter
 import com.tistory.jeongs0222.weatherapplication.adapter.ShortForecastAdapter
 import com.tistory.jeongs0222.weatherapplication.model.Repository
+import com.tistory.jeongs0222.weatherapplication.model.mediumForecast.MediumForecastName
 import com.tistory.jeongs0222.weatherapplication.utils.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -41,6 +43,10 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
 
     val shortForecastAdapter = ShortForecastAdapter()
 
+    val mediumForecastAdapter = MediumForecastAdapter()
+
+    private var list = ArrayList<String>()
+
 
     init {
         //checkPermission()
@@ -52,6 +58,8 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
         getFinedust()
 
         getShortForecast()
+
+        getMediumForecast()
     }
 
     /*private fun checkPermission() {
@@ -83,7 +91,7 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
         }
     }*/
 
-    fun geoCoder() {
+    private fun geoCoder() {
         addDisposable(
             repository.getGeocoder(
                 "coordsToaddr",
@@ -103,14 +111,14 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
         )
     }
 
-    fun getPresentDate() {
+    private fun getPresentDate() {
         val dateProvider = DateProviderImpl() as DateProvider
 
         preTimeT.value = dateProvider.getDate()
     }
 
     //더미 값 넣어둠
-    fun getFinedust() {
+    private fun getFinedust() {
         Log.e("start", "start")
         addDisposable(
             repository.getFinedust(
@@ -134,11 +142,11 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
     }
 
     //더미 값 넣어둠
-    fun getShortForecast() {
+    private fun getShortForecast() {
 
         addDisposable(repository.getShortForecast(
             "%2B%2B4DRXqUeVX3G7JHjDWjK6ezt9phL8Zi3t0o9OB5AWYVwq92UpGrNLX2NdHP4sgL2znxi6ntWh%2FoHxDjym6Mfg%3D%3D",
-            "20181214",
+            "20181216",
             "1400",
             "55",
             "127",
@@ -151,12 +159,43 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
             .toObservable()
             .map { it.item }
             .flatMapIterable { it }
-            .filter { it.category == "T1H" || it.category == "SKY"}
+            .filter { it.category == "T1H" || it.category == "SKY" }
             .doOnNext { shortForecastAdapter.addItems(it) }
             .doOnError { it.printStackTrace() }
             .subscribe())
 
         //_present_emoticon_imageView.value = skyProvider.getItems().fcstValue
         //Log.e("123456", skyProvider.getItems().fcstValue)
+    }
+
+    private fun getMediumForecast() {
+
+        addDisposable(repository.getMediumForecast(
+            "%2B%2B4DRXqUeVX3G7JHjDWjK6ezt9phL8Zi3t0o9OB5AWYVwq92UpGrNLX2NdHP4sgL2znxi6ntWh%2FoHxDjym6Mfg%3D%3D",
+            "11B00000",
+            "201812160600",
+            "1",
+            "1",
+            "json"
+        )
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                list.add(0, it.wf3Am)
+                list.add(1, it.wf3Pm)
+                list.add(2, it.wf4Am)
+                list.add(3, it.wf4Pm)
+                list.add(4, it.wf5Am)
+                list.add(4, it.wf5Pm)
+                list.add(4, it.wf6Am)
+                list.add(4, it.wf6Pm)
+                list.add(4, it.wf7Am)
+                list.add(4, it.wf7Pm)
+
+                mediumForecastAdapter.addItems(list)
+            }, {
+                it.printStackTrace()
+            })
+        )
     }
 }

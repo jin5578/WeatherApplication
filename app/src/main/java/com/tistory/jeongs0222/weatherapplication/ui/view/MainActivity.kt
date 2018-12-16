@@ -39,6 +39,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         viewDataBinding.mainFinedustLayout.finedustRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         viewDataBinding.mainShortforecastLayout.shortForecastRecyclerView.layoutManager = GridLayoutManager(this, 4)
+        viewDataBinding.mainMediumfirecastLayout.mediumForecastRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
         //viewDataBinding.finedustRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         //viewDataBinding.shortForecastRecyclerView.layoutManager = GridLayoutManager(this, 4)
 
