@@ -55,7 +55,7 @@ class ShortForecastAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         fun bind(tItem: ShortForecastResult, sItem: ShortForecastResult) {
             mainShortForecastViewModel.bind(tItem, sItem)
 
-            binding.mainShortForecastViewModel = mainShortForecastViewModel
+            binding.viewModel = mainShortForecastViewModel
         }
     }
 }

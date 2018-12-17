@@ -1,5 +1,6 @@
 package com.tistory.jeongs0222.weatherapplication.utils
 
+import android.annotation.SuppressLint
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -14,6 +15,7 @@ interface DateProvider {
 
 class DateProviderImpl: DateProvider {
 
+    @SuppressLint("SimpleDateFormat")
     override fun getDate(): String {
         val mNow = System.currentTimeMillis()
         val mDate = Date(mNow)

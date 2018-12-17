@@ -13,8 +13,6 @@ import com.tistory.jeongs0222.weatherapplication.ui.viewmodel.MainMediumForecast
 
 class MediumForecastAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    //private var sItem: MediumForecastResult? = null
-
     private var sItem = ArrayList<String>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -34,18 +32,11 @@ class MediumForecastAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         if(sItem.isNotEmpty()) {
             (holder as ViewHolder).bind(sItem[position], position)
         }
-
-        /*sItem?.let {
-            Log.e("1221", "1221")
-            (holder as ViewHolder).bind(it[position])
-        }*/
-
     }
 
     override fun getItemCount(): Int = sItem.size
 
     fun addItems(items: ArrayList<String>) {
-        //sItem = items
         sItem = items
 
         notifyDataSetChanged()
@@ -58,7 +49,7 @@ class MediumForecastAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         fun bind(sItem: String, position: Int) {
             mainMediumForecastViewModel.bind(sItem, position)
 
-            binding.mediumViewModel = mainMediumForecastViewModel
+            binding.viewModel = mainMediumForecastViewModel
         }
     }
 

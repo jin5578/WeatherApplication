@@ -46,7 +46,7 @@ class FinedustAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         fun bind(mItem: FinedustResult) {
             mainFinedustViewModel.bind(mItem)
 
-            binding.mainFinedustViewModel = mainFinedustViewModel
+            binding.viewModel = mainFinedustViewModel
         }
     }
 }

@@ -146,7 +146,7 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
 
         addDisposable(repository.getShortForecast(
             "%2B%2B4DRXqUeVX3G7JHjDWjK6ezt9phL8Zi3t0o9OB5AWYVwq92UpGrNLX2NdHP4sgL2znxi6ntWh%2FoHxDjym6Mfg%3D%3D",
-            "20181216",
+            "20181217",
             "1400",
             "55",
             "127",
@@ -173,7 +173,7 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
         addDisposable(repository.getMediumForecast(
             "%2B%2B4DRXqUeVX3G7JHjDWjK6ezt9phL8Zi3t0o9OB5AWYVwq92UpGrNLX2NdHP4sgL2znxi6ntWh%2FoHxDjym6Mfg%3D%3D",
             "11B00000",
-            "201812160600",
+            "201812170600",
             "1",
             "1",
             "json"
@@ -186,11 +186,11 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
                 list.add(2, it.wf4Am)
                 list.add(3, it.wf4Pm)
                 list.add(4, it.wf5Am)
-                list.add(4, it.wf5Pm)
-                list.add(4, it.wf6Am)
-                list.add(4, it.wf6Pm)
-                list.add(4, it.wf7Am)
-                list.add(4, it.wf7Pm)
+                list.add(5, it.wf5Pm)
+                list.add(6, it.wf6Am)
+                list.add(7, it.wf6Pm)
+                list.add(8, it.wf7Am)
+                list.add(9, it.wf7Pm)
 
                 mediumForecastAdapter.addItems(list)
             }, {

@@ -9,7 +9,7 @@
         <import type="android.view.View"/>
 
         <variable
-                name="mediumViewModel"
+                name="viewModel"
                 type="com.tistory.jeongs0222.weatherapplication.ui.viewmodel.MainMediumForecastViewModel"/>
 
     </data>
@@ -23,7 +23,7 @@
                 android:id="@+id/time_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{mediumViewModel._timeT}"
+                android:text="@{viewModel._timeT}"
                 android:textColor="@color/colorBlack"
                 android:textSize="12sp"
                 android:fontFamily="@font/goyang"
@@ -37,6 +37,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
+                app:skyUrl="@{viewModel._statusI}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/time_textView"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -47,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="@{mediumViewModel._temperatureT}"
+                android:text="@{viewModel._temperatureT}"
                 android:textColor="@color/colorBlack"
                 android:textSize="12sp"
                 android:fontFamily="@font/goyang"

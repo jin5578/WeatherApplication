@@ -14,8 +14,6 @@ interface GradeDivideProvider {
     fun carbon_divider(value: Float): String
 
     fun sulfurous_divider(value: Float): String
-
-    fun cloudy_divider(value: String): Int
 }
 
 class GradeDivideProviderImpl : GradeDivideProvider {
@@ -173,21 +171,6 @@ class GradeDivideProviderImpl : GradeDivideProvider {
 
             return "좋음"
 
-        }
-    }
-
-    override fun cloudy_divider(value: String): Int {
-
-        return when(value) {
-            "맑음" -> 1
-
-            "흐림" -> 2
-
-            "구름조금" -> 3
-
-            "구름많음" -> 4
-
-            else -> null!!
         }
     }
 }
