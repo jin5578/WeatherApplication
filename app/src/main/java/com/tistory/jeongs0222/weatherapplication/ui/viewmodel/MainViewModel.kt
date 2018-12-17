@@ -143,7 +143,6 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
 
     //더미 값 넣어둠
     private fun getShortForecast() {
-
         addDisposable(repository.getShortForecast(
             "%2B%2B4DRXqUeVX3G7JHjDWjK6ezt9phL8Zi3t0o9OB5AWYVwq92UpGrNLX2NdHP4sgL2znxi6ntWh%2FoHxDjym6Mfg%3D%3D",
             "20181217",
@@ -169,6 +168,7 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
     }
 
     private fun getMediumForecast() {
+        val listProvider = ListProviderImpl() as ListProvider
 
         addDisposable(repository.getMediumForecast(
             "%2B%2B4DRXqUeVX3G7JHjDWjK6ezt9phL8Zi3t0o9OB5AWYVwq92UpGrNLX2NdHP4sgL2znxi6ntWh%2FoHxDjym6Mfg%3D%3D",
@@ -181,18 +181,7 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                list.add(0, it.wf3Am)
-                list.add(1, it.wf3Pm)
-                list.add(2, it.wf4Am)
-                list.add(3, it.wf4Pm)
-                list.add(4, it.wf5Am)
-                list.add(5, it.wf5Pm)
-                list.add(6, it.wf6Am)
-                list.add(7, it.wf6Pm)
-                list.add(8, it.wf7Am)
-                list.add(9, it.wf7Pm)
-
-                mediumForecastAdapter.addItems(list)
+                mediumForecastAdapter.addItems(listProvider.addList(it))
             }, {
                 it.printStackTrace()
             })
