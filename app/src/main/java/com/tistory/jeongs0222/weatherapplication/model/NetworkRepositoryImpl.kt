@@ -1,20 +1,18 @@
 package com.tistory.jeongs0222.weatherapplication.model
 
-import com.tistory.jeongs0222.weatherapplication.api.FinedustApi
-import com.tistory.jeongs0222.weatherapplication.api.GeocoderApi
-import com.tistory.jeongs0222.weatherapplication.api.MediumForecastApi
-import com.tistory.jeongs0222.weatherapplication.api.ShortForecastApi
+import com.tistory.jeongs0222.weatherapplication.api.*
 import com.tistory.jeongs0222.weatherapplication.model.finedust.FinedustResult
 import com.tistory.jeongs0222.weatherapplication.model.geocoder.GeocoderAddress
 import com.tistory.jeongs0222.weatherapplication.model.mediumForecast.MediumForecastItem
 import com.tistory.jeongs0222.weatherapplication.model.mediumForecast.MediumForecastName
 import com.tistory.jeongs0222.weatherapplication.model.mediumForecast.MediumForecastResult
+import com.tistory.jeongs0222.weatherapplication.model.mediumTemperature.MediumTemperatureResult
 import com.tistory.jeongs0222.weatherapplication.model.shortForecast.ShortForecastItem
 import com.tistory.jeongs0222.weatherapplication.model.shortForecast.ShortForecastResult
 import io.reactivex.Single
 
 
-class NetworkRepositoryImpl(private val geocoderApi: GeocoderApi, private val finedustApi: FinedustApi, private val shortForecastApi: ShortForecastApi, private val mediumForecastApi: MediumForecastApi) : Repository {
+class NetworkRepositoryImpl(private val geocoderApi: GeocoderApi, private val finedustApi: FinedustApi, private val shortForecastApi: ShortForecastApi, private val mediumForecastApi: MediumForecastApi, private val mediumTemperatureApi: MediumTemperatureApi) : Repository {
 
     override fun getGeocoder(
         request: String,
@@ -75,6 +73,20 @@ class NetworkRepositoryImpl(private val geocoderApi: GeocoderApi, private val fi
         type: String
     ): Single<MediumForecastResult> {
         return mediumForecastApi.mediumForecast(serviceKey, regId, tmFc, numOfRows, pageNo, type)
+            .map {
+                it.response.body.items.item
+            }
+    }
+
+    override fun getMediumTemperature(
+        serviceKey: String,
+        regId: String,
+        tmFc: String,
+        pageNo: String,
+        numOfRows: String,
+        type: String
+    ): Single<MediumTemperatureResult> {
+        return mediumTemperatureApi.mediumTemperature(serviceKey, regId, tmFc, pageNo, numOfRows, type)
             .map {
                 it.response.body.items.item
             }

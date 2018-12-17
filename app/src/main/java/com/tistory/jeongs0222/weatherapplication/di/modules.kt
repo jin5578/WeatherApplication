@@ -2,10 +2,7 @@ package com.tistory.jeongs0222.weatherapplication.di
 
 import com.tistory.jeongs0222.weatherapplication.BuildConfig
 import com.tistory.jeongs0222.weatherapplication.R
-import com.tistory.jeongs0222.weatherapplication.api.FinedustApi
-import com.tistory.jeongs0222.weatherapplication.api.GeocoderApi
-import com.tistory.jeongs0222.weatherapplication.api.MediumForecastApi
-import com.tistory.jeongs0222.weatherapplication.api.ShortForecastApi
+import com.tistory.jeongs0222.weatherapplication.api.*
 import com.tistory.jeongs0222.weatherapplication.utils.*
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -70,7 +67,7 @@ val apiModules: Module = module {
                 .build())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(shortForecastBaseUrl)
+            .baseUrl(forecastBaseUrl)
             .build()
             .create(ShortForecastApi::class.java)
     }
@@ -82,9 +79,21 @@ val apiModules: Module = module {
                 .build())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(mediumForecastBaseUrl)
+            .baseUrl(forecastBaseUrl)
             .build()
             .create(MediumForecastApi::class.java)
+    }
+
+    single {
+        Retrofit.Builder()
+            .client(OkHttpClient.Builder()
+                .addInterceptor(get(loggingInterceptor))
+                .build())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl(forecastBaseUrl)
+            .build()
+            .create(MediumTemperatureApi::class.java)
     }
 }
 

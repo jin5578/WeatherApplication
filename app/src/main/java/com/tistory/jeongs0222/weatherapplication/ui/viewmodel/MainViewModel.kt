@@ -45,7 +45,9 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
 
     val mediumForecastAdapter = MediumForecastAdapter()
 
-    private var list = ArrayList<String>()
+    private val listProvider = ListProviderImpl() as ListProvider
+
+    private var mediumForecastList = ArrayList<String>()
 
 
     init {
@@ -60,6 +62,8 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
         getShortForecast()
 
         getMediumForecast()
+
+        //getMediumTemperature()
     }
 
     /*private fun checkPermission() {
@@ -162,14 +166,9 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
             .doOnNext { shortForecastAdapter.addItems(it) }
             .doOnError { it.printStackTrace() }
             .subscribe())
-
-        //_present_emoticon_imageView.value = skyProvider.getItems().fcstValue
-        //Log.e("123456", skyProvider.getItems().fcstValue)
     }
 
     private fun getMediumForecast() {
-        val listProvider = ListProviderImpl() as ListProvider
-
         addDisposable(repository.getMediumForecast(
             "%2B%2B4DRXqUeVX3G7JHjDWjK6ezt9phL8Zi3t0o9OB5AWYVwq92UpGrNLX2NdHP4sgL2znxi6ntWh%2FoHxDjym6Mfg%3D%3D",
             "11B00000",
@@ -181,10 +180,29 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                mediumForecastAdapter.addItems(listProvider.addList(it))
+                mediumForecastAdapter.addItems(listProvider.mediumForecastAddList(it))
+                //mediumForecastList = listProvider.mediumForecastAddList(it)
             }, {
                 it.printStackTrace()
             })
         )
     }
+
+    /*private fun getMediumTemperature() {
+        addDisposable(repository.getMediumTemperature(
+            "%2B%2B4DRXqUeVX3G7JHjDWjK6ezt9phL8Zi3t0o9OB5AWYVwq92UpGrNLX2NdHP4sgL2znxi6ntWh%2FoHxDjym6Mfg%3D%3D",
+            "11B10101",
+            "201812170600",
+            "1",
+            "1",
+            "json"
+        )
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                mediumForecastAdapter.addItems(mediumForecastList, listProvider.mediumTemperatureAddList(it))
+            }, {
+                it.printStackTrace()
+            }))
+    }*/
 }

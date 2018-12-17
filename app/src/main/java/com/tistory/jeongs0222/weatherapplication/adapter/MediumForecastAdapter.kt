@@ -13,7 +13,8 @@ import com.tistory.jeongs0222.weatherapplication.ui.viewmodel.MainMediumForecast
 
 class MediumForecastAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var sItem = ArrayList<String>()
+    private var cItem = ArrayList<String>()
+    //private var tItem = ArrayList<String>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -29,15 +30,27 @@ class MediumForecastAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         Log.e("2112", "2112")
 
-        if(sItem.isNotEmpty()) {
-            (holder as ViewHolder).bind(sItem[position], position)
+        /*if(cItem.isNotEmpty() && tItem.isNotEmpty()) {
+            Log.e("12121212", "12121212")
+            (holder as ViewHolder).bind(cItem[position], position, tItem)
+        }*/
+
+        if(cItem.isNotEmpty()) {
+            (holder as ViewHolder).bind(cItem[position], position)
         }
     }
 
-    override fun getItemCount(): Int = sItem.size
+    override fun getItemCount(): Int = cItem.size
 
-    fun addItems(items: ArrayList<String>) {
-        sItem = items
+    /*fun addItems(cItem: ArrayList<String>, tItem: ArrayList<String>) {
+        this.cItem = cItem
+        this.tItem = tItem
+
+        notifyDataSetChanged()
+    }*/
+
+    fun addItems(cItem: ArrayList<String>) {
+        this.cItem = cItem
 
         notifyDataSetChanged()
     }
@@ -46,8 +59,15 @@ class MediumForecastAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         private val mainMediumForecastViewModel = MainMediumForecastViewModel()
 
-        fun bind(sItem: String, position: Int) {
-            mainMediumForecastViewModel.bind(sItem, position)
+        /*fun bind(cItem: String, position: Int, tItem: ArrayList<String>) {
+            mainMediumForecastViewModel.bind(cItem, position, tItem)
+            mainMediumForecastViewModel.bind(cItem, position)
+
+            binding.viewModel = mainMediumForecastViewModel
+        }*/
+
+        fun bind(cItem: String, position: Int) {
+            mainMediumForecastViewModel.bind(cItem, position)
 
             binding.viewModel = mainMediumForecastViewModel
         }

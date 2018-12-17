@@ -1,5 +1,6 @@
 package com.tistory.jeongs0222.weatherapplication.ui.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tistory.jeongs0222.weatherapplication.utils.*
@@ -12,17 +13,50 @@ class MainMediumForecastViewModel: DisposableViewModel() {
     private val timeT = MutableLiveData<String>()
     val _timeT: LiveData<String> get() = timeT
 
-    private val temperatureT = MutableLiveData<String>()
-    val _temperatureT: LiveData<String> get() = temperatureT
+    private val cloudyT = MutableLiveData<String>()
+    val _cloudyT: LiveData<String> get() = cloudyT
 
-    fun bind(sItem: String, position: Int) {
+    private val minTemperatureT = MutableLiveData<String>()
+    val _minTemperatureT: LiveData<String> get() = minTemperatureT
+
+    private val maxTemperatureT = MutableLiveData<String>()
+    val _maxTemperatureT: LiveData<String> get() = maxTemperatureT
+
+    /*fun bind(cItem: String, position: Int, tItem: ArrayList<String>) {
         val dateProvider = DateProviderImpl() as DateProvider
         val cloudyDivideProvider = CloudyDivideProviderImpl() as CloudyDivideProvider
+        val temperatureDivideProvider = TemperatureDivideProviderImpl() as TemperatureDivideProvider
 
-        temperatureT.value = sItem
+        Log.e("cItem", cItem)
+        cloudyT.value = cItem
         timeT.value = dateProvider.getPositionDate(position)
 
-        statusI.value = cloudyDivideProvider.cloudy_divider(sItem)
+        statusI.value = cloudyDivideProvider.cloudy_divider(cItem)
+
+        if(!temperatureDivideProvider.positionDivier(position, tItem).isNullOrEmpty()) {
+            val positionList = temperatureDivideProvider.positionDivier(position, tItem)
+
+            positionList?.let {
+                minTemperatureT.value = it[0]
+                maxTemperatureT.value = it[1]
+            }
+        }
+
+    }*/
+
+    fun bind(cItem: String, position: Int) {
+        val dateProvider = DateProviderImpl() as DateProvider
+        val cloudyDivideProvider = CloudyDivideProviderImpl() as CloudyDivideProvider
+        //val temperatureDivideProvider = TemperatureDivideProviderImpl() as TemperatureDivideProvider
+
+        cloudyT.value = cItem
+        timeT.value = dateProvider.getPositionDate(position)
+
+        statusI.value = cloudyDivideProvider.cloudy_divider(cItem)
+
+        minTemperatureT.value = "-5" + "°"
+        maxTemperatureT.value = "6" + "°"
+
     }
 
 }

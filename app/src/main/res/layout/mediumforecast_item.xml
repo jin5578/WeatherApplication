@@ -44,19 +44,49 @@
                 tools:src="@drawable/sun"/>
 
         <TextView
-                android:id="@+id/temperature_textView"
+                android:id="@+id/minTemperature_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="@{viewModel._temperatureT}"
+                android:text="@{viewModel._minTemperatureT}"
                 android:textColor="@color/colorBlack"
                 android:textSize="12sp"
                 android:fontFamily="@font/goyang"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/status_imageView"
+                app:layout_constraintEnd_toStartOf="@id/cloudy_textView"
                 app:layout_constraintBottom_toBottomOf="parent"
-                tools:text="7°"/>
+                tools:text="1°"/>
+
+        <TextView
+                android:id="@+id/cloudy_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="@{viewModel._cloudyT}"
+                android:textColor="@color/colorBlack"
+                android:textSize="12sp"
+                android:fontFamily="@font/goyang"
+                app:layout_constraintStart_toEndOf="@id/minTemperature_textView"
+                app:layout_constraintEnd_toStartOf="@id/maxTemperature_textView"
+                app:layout_constraintTop_toTopOf="@id/minTemperature_textView"
+                app:layout_constraintBottom_toBottomOf="@id/minTemperature_textView"
+                tools:text="맑음"/>
+
+        <TextView
+                android:id="@+id/maxTemperature_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="@{viewModel._maxTemperatureT}"
+                android:textColor="@color/colorBlack"
+                android:textSize="12sp"
+                android:fontFamily="@font/goyang"
+                app:layout_constraintStart_toEndOf="@id/cloudy_textView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/cloudy_textView"
+                app:layout_constraintTop_toTopOf="@id/cloudy_textView"
+                tools:text="10°"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
