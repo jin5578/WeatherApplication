@@ -11,14 +11,16 @@ import retrofit2.http.Query
 interface GoApi {
 
     @GET("service/SecndSrtpdFrcstInfoService2/ForecastTimeData")
-    fun shortForecast(@Query("ServiceKey", encoded = true) serviceKey: String,
-                      @Query("base_date") baseDate: String,
-                      @Query("base_time") baseTime: String,
-                      @Query("nx") nx: String,
-                      @Query("ny") ny: String,
-                      @Query("numOfRows") numOfRows: String,
-                      @Query("pageNo") pageNo: String,
-                      @Query("_type") type: String): Single<ShortForecastResponse>
+    fun shortForecast(
+        @Query("ServiceKey", encoded = true) serviceKey: String,
+        @Query("base_date") baseDate: String,
+        @Query("base_time") baseTime: String,
+        @Query("nx") nx: String,
+        @Query("ny") ny: String,
+        @Query("numOfRows") numOfRows: String,
+        @Query("pageNo") pageNo: String,
+        @Query("_type") type: String
+    ): Single<ShortForecastResponse>
 
     @GET("service/MiddleFrcstInfoService/getMiddleLandWeather")
     fun mediumForecast(
@@ -27,7 +29,8 @@ interface GoApi {
         @Query("tmFc") tmFc: String,
         @Query("numOfRows") numOfRows: String,
         @Query("pageNo") pageNo: String,
-        @Query("_type") type: String): Single<MediumForecastResponse>
+        @Query("_type") type: String
+    ): Single<MediumForecastResponse>
 
     @GET("service/MiddleFrcstInfoService/getMiddleTemperature")
     fun mediumTemperature(
@@ -36,6 +39,7 @@ interface GoApi {
         @Query("tmFc") tmFc: String,
         @Query("pageNo") pageNo: String,
         @Query("numOfRows") numOfRows: String,
-        @Query("_type") type: String): Single<MediumTemperatureResponse>
+        @Query("_type") type: String
+    ): Single<MediumTemperatureResponse>
 
 }

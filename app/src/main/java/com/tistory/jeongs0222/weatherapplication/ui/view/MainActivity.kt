@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.widget.HorizontalScrollView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -24,8 +25,8 @@ import org.koin.android.ext.android.inject
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
-    //private val permissionProvider = PermissionProviderImpl(this) as PermissionProvider
-    //private val locationProvider = LocationProviderImpl(this) as LocationProvider
+    private val permissionProvider = PermissionProviderImpl(this) as PermissionProvider
+    private val locationProvider = LocationProviderImpl(this) as LocationProvider
 
     override val layoutResourceId: Int = R.layout.activity_main
 
@@ -41,16 +42,22 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         viewDataBinding.mainShortforecastLayout.shortForecastRecyclerView.layoutManager = GridLayoutManager(this, 4)
         viewDataBinding.mainMediumfirecastLayout.mediumForecastRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
-        //viewDataBinding.finedustRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        //viewDataBinding.shortForecastRecyclerView.layoutManager = GridLayoutManager(this, 4)
 
         //val mainViewModel = MainViewModel(permissionProvider, locationProvider)
 
         val mainViewModel = ViewModelProviders.of(this, mainViewModelFactory).get(MainViewModel::class.java)
         //mainViewModel.bind()
 
+        mainViewModel._startApp.observe(this, Observer {
+            if(it == true) {
+                mainViewModel.bind(permissionProvider, locationProvider)
+
+                mainViewModel.checkPermission()
+            }
+        })
+
         mainViewModel._mainLocationI.observe(this, Observer {
-           //mainViewModel.checkPermissionImage()
+           mainViewModel.checkPermissionImage()
         })
 
         mainViewModel.showDialog.observe(this, Observer {

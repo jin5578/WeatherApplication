@@ -10,21 +10,23 @@ import com.tistory.jeongs0222.weatherapplication.model.Repository
 import com.tistory.jeongs0222.weatherapplication.model.finedust.FinedustResult
 import com.tistory.jeongs0222.weatherapplication.model.geocoder.GeocoderAddress
 import com.tistory.jeongs0222.weatherapplication.model.geocoder.GeocoderResult
-import com.tistory.jeongs0222.weatherapplication.model.mediumForecast.MediumForecastName
 import com.tistory.jeongs0222.weatherapplication.model.mediumForecast.MediumForecastResult
 import com.tistory.jeongs0222.weatherapplication.model.mediumTemperature.MediumTemperatureResult
-import com.tistory.jeongs0222.weatherapplication.model.shortForecast.ShortForecastItem
 import com.tistory.jeongs0222.weatherapplication.model.shortForecast.ShortForecastResult
 import com.tistory.jeongs0222.weatherapplication.utils.*
-import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
 
 //class MainViewModel(private val permissionProvider: PermissionProvider, private val locationProvider: LocationProvider) : DisposableViewModel() {
 class MainViewModel(private val repository: Repository) : DisposableViewModel() {
+
+    private val startApp = MutableLiveData<Boolean>()
+    val _startApp: LiveData<Boolean> get() = startApp
+
+    private val readyApp = MutableLiveData<Boolean>()
+    val _readyApp: LiveData<Boolean> get() = readyApp
 
     private val preLocationT = MutableLiveData<String>()
     val _preLocationT: LiveData<String> get() = preLocationT
@@ -55,6 +57,10 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
 
     val mediumForecastAdapter = MediumForecastAdapter()
 
+    private lateinit var permissionProvider: PermissionProvider
+
+    private lateinit var locationProvider: LocationProvider
+
     private val listProvider = ListProviderImpl() as ListProvider
 
     private var mediumForecastList = ArrayList<String>()
@@ -62,6 +68,7 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
 
     init {
         //checkPermission()
+        startApp.value = true
 
         getPresentDate()
 
@@ -73,8 +80,9 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
             .subscribe())
     }
 
-    /*private fun checkPermission() {
+    fun checkPermission() {
         if (permissionProvider.getLocationPermission()) {
+            Log.e("permission", "fail")
             if (!permissionProvider.shouldShow()) {
                 permissionProvider.requestPermission()
             }
@@ -84,23 +92,25 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
             Log.e("gugugu", locationProvider.getCurrentLocation())
             Log.e("좌표 위치", "좌표 위치")
         }
-    }*/
+    }
 
-    fun bind() {
-        preLocationT.value = "영등포구 당산동 6가"
+    fun bind(permissionProvider: PermissionProvider, locationProvider: LocationProvider) {
+        this.permissionProvider = permissionProvider
+        this.locationProvider = locationProvider
+        /*preLocationT.value = "영등포구 당산동 6가"
         preStatusT.value = "매우 좋음"
-        preExplanationT.value = "화창합니다! 외출을 나가세요!"
+        preExplanationT.value = "화창합니다! 외출을 나가세요!"*/
     }
 
     fun locationClickEvent() {
         mainLocationI.call()
     }
 
-    /*fun checkPermissionImage() {
+    fun checkPermissionImage() {
         if (permissionProvider.getLocationPermission()) {
             _showDialog.call()
         }
-    }*/
+    }
 
     private fun getPresentDate() {
 

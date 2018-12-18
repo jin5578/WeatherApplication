@@ -67,7 +67,7 @@ val apiModules: Module = module {
                 .build())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(forecastBaseUrl)
+            .baseUrl(goBaseUrl)
             .build()
             .create(GoApi::class.java)
     }
