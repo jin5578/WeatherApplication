@@ -34,10 +34,6 @@ class MediumForecastAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             Log.e("12121212", "12121212")
             (holder as ViewHolder).bind(cItem[position], position, tItem)
         }
-
-        /*if(cItem.isNotEmpty()) {
-            (holder as ViewHolder).bind(cItem[position], position)
-        }*/
     }
 
     override fun getItemCount(): Int = cItem.size
@@ -49,22 +45,10 @@ class MediumForecastAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         notifyDataSetChanged()
     }
 
-    /*fun addItems(cItem: ArrayList<String>) {
-        this.cItem = cItem
-
-        notifyDataSetChanged()
-    }*/
 
     class ViewHolder(private val binding: MediumforecastItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
         private val mainMediumForecastViewModel = MainMediumForecastViewModel()
-
-        /*fun bind(cItem: String, position: Int, tItem: ArrayList<String>) {
-            mainMediumForecastViewModel.bind(cItem, position, tItem)
-            mainMediumForecastViewModel.bind(cItem, position)
-
-            binding.viewModel = mainMediumForecastViewModel
-        }*/
 
         fun bind(cItem: String, position: Int, tItem: ArrayList<String>) {
             mainMediumForecastViewModel.bind(cItem, position, tItem)

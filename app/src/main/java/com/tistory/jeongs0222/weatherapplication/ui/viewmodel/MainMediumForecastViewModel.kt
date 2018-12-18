@@ -45,20 +45,4 @@ class MainMediumForecastViewModel: DisposableViewModel() {
         }
 
     }
-
-    /*fun bind(cItem: String, position: Int) {
-        val dateProvider = DateProviderImpl() as DateProvider
-        val cloudyDivideProvider = CloudyDivideProviderImpl() as CloudyDivideProvider
-        //val temperatureDivideProvider = TemperatureDivideProviderImpl() as TemperatureDivideProvider
-
-        cloudyT.value = cItem
-        timeT.value = dateProvider.getPositionDate(position)
-
-        statusI.value = cloudyDivideProvider.cloudy_divider(cItem)
-
-        minTemperatureT.value = "-5" + "°"
-        maxTemperatureT.value = "6" + "°"
-
-    }*/
-
 }

@@ -210,7 +210,6 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
-                //mediumForecastAdapter.addItems(listProvider.mediumForecastAddList(it))
                 mediumForecastList = listProvider.mediumForecastAddList(it)
                 Log.e("mediumForecast", "success")
             }
