@@ -12,6 +12,7 @@ import com.tistory.jeongs0222.weatherapplication.model.geocoder.GeocoderAddress
 import com.tistory.jeongs0222.weatherapplication.model.geocoder.GeocoderResult
 import com.tistory.jeongs0222.weatherapplication.model.mediumForecast.MediumForecastName
 import com.tistory.jeongs0222.weatherapplication.model.mediumForecast.MediumForecastResult
+import com.tistory.jeongs0222.weatherapplication.model.mediumTemperature.MediumTemperatureResult
 import com.tistory.jeongs0222.weatherapplication.model.shortForecast.ShortForecastItem
 import com.tistory.jeongs0222.weatherapplication.model.shortForecast.ShortForecastResult
 import com.tistory.jeongs0222.weatherapplication.utils.*
@@ -64,20 +65,12 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
 
         getPresentDate()
 
-        addDisposable(
-            Single
-                .concat(geoCoder(), getFinedust(), getShortForecast(), getMediumForecast())
-                .doOnComplete { Log.e("concat", "complete") }
-                .doOnError { Log.e("concat", "error") }
-                .subscribe()
-        )
-
-        /*
-
-          getMediumForecast()*/
-
-        //getMediumTemperature()
-
+        addDisposable(Single
+            .concat(geoCoder(), getFinedust(), getShortForecast(), getMediumForecast())
+            .concatWith(getMediumTemperature())
+            .doOnComplete { Log.e("concat", "complete") }
+            .doOnError { Log.e("concat", "error") }
+            .subscribe())
     }
 
     /*private fun checkPermission() {
@@ -216,21 +209,25 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
             }
     }
 
-    /*private fun getMediumTemperature() {
-        addDisposable(repository.getMediumTemperature(
+    private fun getMediumTemperature(): Single<MediumTemperatureResult> {
+        return repository.getMediumTemperature(
             "%2B%2B4DRXqUeVX3G7JHjDWjK6ezt9phL8Zi3t0o9OB5AWYVwq92UpGrNLX2NdHP4sgL2znxi6ntWh%2FoHxDjym6Mfg%3D%3D",
             "11B10101",
-            "201812170600",
+            "201812180600",
             "1",
             "1",
             "json"
         )
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
+            .doOnSuccess {
                 //mediumForecastAdapter.addItems(mediumForecastList, listProvider.mediumTemperatureAddList(it))
-            }, {
+                Log.e("mediumTemperature", "success")
+            }
+            .doOnError {
                 it.printStackTrace()
-            }))
-    }*/
+                Log.e("mediumTemperature", "error")
+            }
+
+    }
 }
