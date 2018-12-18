@@ -12,7 +12,7 @@ import org.koin.dsl.module.module
 
 val geocoderModules: Module = module {
     factory {
-        NetworkRepositoryImpl(get(), get(), get(), get(), get()) as Repository
+        NetworkRepositoryImpl(get(), get(), get()) as Repository
     }
 
     factory {

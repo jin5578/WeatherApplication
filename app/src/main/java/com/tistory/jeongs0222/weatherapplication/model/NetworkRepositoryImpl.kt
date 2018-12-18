@@ -3,16 +3,13 @@ package com.tistory.jeongs0222.weatherapplication.model
 import com.tistory.jeongs0222.weatherapplication.api.*
 import com.tistory.jeongs0222.weatherapplication.model.finedust.FinedustResult
 import com.tistory.jeongs0222.weatherapplication.model.geocoder.GeocoderAddress
-import com.tistory.jeongs0222.weatherapplication.model.mediumForecast.MediumForecastItem
-import com.tistory.jeongs0222.weatherapplication.model.mediumForecast.MediumForecastName
 import com.tistory.jeongs0222.weatherapplication.model.mediumForecast.MediumForecastResult
 import com.tistory.jeongs0222.weatherapplication.model.mediumTemperature.MediumTemperatureResult
 import com.tistory.jeongs0222.weatherapplication.model.shortForecast.ShortForecastItem
-import com.tistory.jeongs0222.weatherapplication.model.shortForecast.ShortForecastResult
 import io.reactivex.Single
 
 
-class NetworkRepositoryImpl(private val geocoderApi: GeocoderApi, private val finedustApi: FinedustApi, private val shortForecastApi: ShortForecastApi, private val mediumForecastApi: MediumForecastApi, private val mediumTemperatureApi: MediumTemperatureApi) : Repository {
+class NetworkRepositoryImpl(private val geocoderApi: GeocoderApi, private val finedustApi: FinedustApi, private val goApi: GoApi) : Repository {
 
     override fun getGeocoder(
         request: String,
@@ -56,7 +53,7 @@ class NetworkRepositoryImpl(private val geocoderApi: GeocoderApi, private val fi
         pageNo: String,
         type: String
     ): Single<ShortForecastItem> {
-        return shortForecastApi.shortForecast(serviceKey, baseDate, baseTime, nx, ny, numOfRows, pageNo, type)
+        return goApi.shortForecast(serviceKey, baseDate, baseTime, nx, ny, numOfRows, pageNo, type)
             .map {
                   //it.response.body.items
                 it.response.body.items
@@ -72,7 +69,7 @@ class NetworkRepositoryImpl(private val geocoderApi: GeocoderApi, private val fi
         pageNo: String,
         type: String
     ): Single<MediumForecastResult> {
-        return mediumForecastApi.mediumForecast(serviceKey, regId, tmFc, numOfRows, pageNo, type)
+        return goApi.mediumForecast(serviceKey, regId, tmFc, numOfRows, pageNo, type)
             .map {
                 it.response.body.items.item
             }
@@ -86,7 +83,7 @@ class NetworkRepositoryImpl(private val geocoderApi: GeocoderApi, private val fi
         numOfRows: String,
         type: String
     ): Single<MediumTemperatureResult> {
-        return mediumTemperatureApi.mediumTemperature(serviceKey, regId, tmFc, pageNo, numOfRows, type)
+        return goApi.mediumTemperature(serviceKey, regId, tmFc, pageNo, numOfRows, type)
             .map {
                 it.response.body.items.item
             }

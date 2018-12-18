@@ -69,31 +69,7 @@ val apiModules: Module = module {
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(forecastBaseUrl)
             .build()
-            .create(ShortForecastApi::class.java)
-    }
-
-    single {
-        Retrofit.Builder()
-            .client(OkHttpClient.Builder()
-                .addInterceptor(get(loggingInterceptor))
-                .build())
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(forecastBaseUrl)
-            .build()
-            .create(MediumForecastApi::class.java)
-    }
-
-    single {
-        Retrofit.Builder()
-            .client(OkHttpClient.Builder()
-                .addInterceptor(get(loggingInterceptor))
-                .build())
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(forecastBaseUrl)
-            .build()
-            .create(MediumTemperatureApi::class.java)
+            .create(GoApi::class.java)
     }
 }
 
