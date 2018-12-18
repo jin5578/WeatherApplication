@@ -22,10 +22,12 @@ class MainMediumForecastViewModel: DisposableViewModel() {
     private val maxTemperatureT = MutableLiveData<String>()
     val _maxTemperatureT: LiveData<String> get() = maxTemperatureT
 
-    /*fun bind(cItem: String, position: Int, tItem: ArrayList<String>) {
-        val dateProvider = DateProviderImpl() as DateProvider
-        val cloudyDivideProvider = CloudyDivideProviderImpl() as CloudyDivideProvider
-        val temperatureDivideProvider = TemperatureDivideProviderImpl() as TemperatureDivideProvider
+    val dateProvider = DateProviderImpl() as DateProvider
+    val cloudyDivideProvider = CloudyDivideProviderImpl() as CloudyDivideProvider
+    val temperatureDivideProvider = TemperatureDivideProviderImpl() as TemperatureDivideProvider
+
+
+    fun bind(cItem: String, position: Int, tItem: ArrayList<String>) {
 
         Log.e("cItem", cItem)
         cloudyT.value = cItem
@@ -42,9 +44,9 @@ class MainMediumForecastViewModel: DisposableViewModel() {
             }
         }
 
-    }*/
+    }
 
-    fun bind(cItem: String, position: Int) {
+    /*fun bind(cItem: String, position: Int) {
         val dateProvider = DateProviderImpl() as DateProvider
         val cloudyDivideProvider = CloudyDivideProviderImpl() as CloudyDivideProvider
         //val temperatureDivideProvider = TemperatureDivideProviderImpl() as TemperatureDivideProvider
@@ -57,6 +59,6 @@ class MainMediumForecastViewModel: DisposableViewModel() {
         minTemperatureT.value = "-5" + "°"
         maxTemperatureT.value = "6" + "°"
 
-    }
+    }*/
 
 }

@@ -9,7 +9,6 @@ import com.tistory.jeongs0222.weatherapplication.adapter.ShortForecastAdapter
 import com.tistory.jeongs0222.weatherapplication.model.Repository
 import com.tistory.jeongs0222.weatherapplication.model.finedust.FinedustResult
 import com.tistory.jeongs0222.weatherapplication.model.geocoder.GeocoderAddress
-import com.tistory.jeongs0222.weatherapplication.model.geocoder.GeocoderResult
 import com.tistory.jeongs0222.weatherapplication.model.mediumForecast.MediumForecastResult
 import com.tistory.jeongs0222.weatherapplication.model.mediumTemperature.MediumTemperatureResult
 import com.tistory.jeongs0222.weatherapplication.model.shortForecast.ShortForecastResult
@@ -97,9 +96,9 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
     fun bind(permissionProvider: PermissionProvider, locationProvider: LocationProvider) {
         this.permissionProvider = permissionProvider
         this.locationProvider = locationProvider
-        /*preLocationT.value = "영등포구 당산동 6가"
-        preStatusT.value = "매우 좋음"
-        preExplanationT.value = "화창합니다! 외출을 나가세요!"*/
+
+        preStatusT.value = "구름많음"
+        preExplanationT.value = "우산을 꼭 챙기세요!"
     }
 
     fun locationClickEvent() {
@@ -211,7 +210,8 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
-                mediumForecastAdapter.addItems(listProvider.mediumForecastAddList(it))
+                //mediumForecastAdapter.addItems(listProvider.mediumForecastAddList(it))
+                mediumForecastList = listProvider.mediumForecastAddList(it)
                 Log.e("mediumForecast", "success")
             }
             .doOnError {
@@ -231,7 +231,7 @@ class MainViewModel(private val repository: Repository) : DisposableViewModel() 
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
-                //mediumForecastAdapter.addItems(mediumForecastList, listProvider.mediumTemperatureAddList(it))
+                mediumForecastAdapter.addItems(mediumForecastList, listProvider.mediumTemperatureAddList(it))
                 Log.e("mediumTemperature", "success")
             }
             .doOnError {

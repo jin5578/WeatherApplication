@@ -14,7 +14,7 @@ import com.tistory.jeongs0222.weatherapplication.ui.viewmodel.MainMediumForecast
 class MediumForecastAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var cItem = ArrayList<String>()
-    //private var tItem = ArrayList<String>()
+    private var tItem = ArrayList<String>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -30,30 +30,30 @@ class MediumForecastAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         Log.e("2112", "2112")
 
-        /*if(cItem.isNotEmpty() && tItem.isNotEmpty()) {
+        if(cItem.isNotEmpty() && tItem.isNotEmpty()) {
             Log.e("12121212", "12121212")
             (holder as ViewHolder).bind(cItem[position], position, tItem)
-        }*/
-
-        if(cItem.isNotEmpty()) {
-            (holder as ViewHolder).bind(cItem[position], position)
         }
+
+        /*if(cItem.isNotEmpty()) {
+            (holder as ViewHolder).bind(cItem[position], position)
+        }*/
     }
 
     override fun getItemCount(): Int = cItem.size
 
-    /*fun addItems(cItem: ArrayList<String>, tItem: ArrayList<String>) {
+    fun addItems(cItem: ArrayList<String>, tItem: ArrayList<String>) {
         this.cItem = cItem
         this.tItem = tItem
 
         notifyDataSetChanged()
-    }*/
+    }
 
-    fun addItems(cItem: ArrayList<String>) {
+    /*fun addItems(cItem: ArrayList<String>) {
         this.cItem = cItem
 
         notifyDataSetChanged()
-    }
+    }*/
 
     class ViewHolder(private val binding: MediumforecastItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -66,8 +66,8 @@ class MediumForecastAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             binding.viewModel = mainMediumForecastViewModel
         }*/
 
-        fun bind(cItem: String, position: Int) {
-            mainMediumForecastViewModel.bind(cItem, position)
+        fun bind(cItem: String, position: Int, tItem: ArrayList<String>) {
+            mainMediumForecastViewModel.bind(cItem, position, tItem)
 
             binding.viewModel = mainMediumForecastViewModel
         }
